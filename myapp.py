@@ -16,4 +16,4 @@ with features:
     st.header("My features")
 
 with model_training:
-    st.header("Model training time!!!!")
+    st.header("Model training time!")
