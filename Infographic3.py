@@ -1,19 +1,10 @@
+from collections import namedtuple
+import altair as alt
+import math
+import pandas as pd
 import streamlit as st
 
-header = st.container()
-dataset = st.container()
-features = st.container()
-model_training = st.container()
+Body_size = st.slider("Diameter of Celestial Body [km]", 1, 10000, 5000)
 
-with header:
-    st.title("Shac's streamlit test")
-    st.text("My attempt at a streamlit app")
-    
-with dataset:
-    st.header("Dataset")
 
-with features:
-    st.header("My features")
 
-with model_training:
-    st.header("Model training time!")
