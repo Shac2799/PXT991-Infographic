@@ -79,7 +79,7 @@ def main():
         plt.scatter(sun.centre_x,sun.centre_y, color = 'y' , s = 100)
         plt.scatter(Earth.x,Earth.y, color = 'r', s = 3)
         plt.scatter(comet.x,comet.y, color = 'b', s = 3)
-        st.pyplot(fig)
 main()
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
+st.pyplot(fig=None, clear_figure=None)
