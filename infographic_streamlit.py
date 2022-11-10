@@ -77,7 +77,7 @@ def main():
         comet.update_path(sun)
         fig = plt.figure(figsize=(10,8))
         plt.scatter(sun.centre_x,sun.centre_y, color = 'y' , s = 100)
-        plt.scatter(Earth.path_x,Earth.parth_y, color = 'r', s = 3)
+        plt.scatter(Earth.path_x,Earth.path_y, color = 'r', s = 3)
         plt.scatter(comet.path_x,comet.path_y, color = 'b', s = 3)
 main()
 
