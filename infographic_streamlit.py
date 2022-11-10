@@ -6,7 +6,7 @@ import math
 st.set_page_config(page_title="Gravity Simulation", page_icon=None, 
                    layout="wide", initial_sidebar_state="auto", menu_items=None)
 
-
+st.title("Simulation of gravity between bodies")
 
 class Body:
       G = 6.67428e-11 #gravitational constant
