@@ -38,8 +38,8 @@ class Object:
         self.angle= (angle/180)*np.pi # changing angle from degrees to radians for calcs
         self.num_days = num_days # defining duration of graphic
         
-        self.path_x = [self.x] # storing coordinates of object
-        self.path_y = [self.y]
+        self.path_x = [] # storing coordinates of object
+        self.path_y = []
         self.x_vel = self.initial_vel*math.cos(self.angle) # calculating initial x/y velocities 
         self.y_vel = self.initial_vel*math.sin(self.angle)
                   
@@ -68,12 +68,12 @@ def main():
     init_vel = st.slider("Object initial velocity [km/s]", min_value = 0.0, max_value = 60.0, step = 1.0)
     #Angle = st.slider("Angle of trajectory [Degrees]", min_value = -90.0, max_value = 90.0, step = 1.0)
     Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 1000.0, step = 5.0)
-    init_x1 = st.slider("Initial x coordinate of object 1", min_value = 0.0, max_value = 10.0, step = 0.5)
-    init_y1 = st.slider("Initial y coordinate of object 1", min_value = 0.0, max_value = 10.0, step = 0.5) 
+    init_x1 = st.slider("Initial x coordinate of object 1 (red)", min_value = 0.0, max_value = 10.0, step = 0.5)
+    init_y1 = st.slider("Initial y coordinate of object 1 (red)", min_value = 0.0, max_value = 10.0, step = 0.5) 
     Earth = Object(init_x1,init_y1,init_vel,90,5.97e24,Days) 
     sun = Body(696.343e6,mass_body,0,0)
-    init_x2 = st.slider("Initial x coordinate of object 2", min_value = 0.0, max_value = 10.0, step = 0.5)
-    init_y2 = st.slider("Initial y coordinate of object 2", min_value = 0.0, max_value = 10.0, step = 0.5) 
+    init_x2 = st.slider("Initial x coordinate of object 2 (blue)", min_value = 0.0, max_value = 10.0, step = 0.5)
+    init_y2 = st.slider("Initial y coordinate of object 2 (blue)", min_value = 0.0, max_value = 10.0, step = 0.5) 
     comet = Object(init_x2,init_y2,init_vel,90,2.2e14,Days)#check why angle affects starting pos  
     #sun_scale = radius_sun/Earth.AU  #  to be more accurate to scale of solar system
     for day in range(int(Days)):
