@@ -67,7 +67,7 @@ def main():
     mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5)
     init_vel = st.slider("Object initial velocity [km/s]", min_value = 0.0, max_value = 60.0, step = 1.0)
     #Angle = st.slider("Angle of trajectory [Degrees]", min_value = -90.0, max_value = 90.0, step = 1.0)
-    Days = st.slider("Duration [Days]", min_value = 1.0, max_value = 1000.0, step = 1.0)
+    Days = st.slider("Duration [Days]", min_value = 1.0, max_value = 1000.0, step = 5.0)
     init_x1 = st.slider("Initial x coordinate of object 1", min_value = 0.5, max_value = 20.0, step = 0.5)
     init_y1 = st.slider("Initial y coordinate of object 1", min_value = 0.5, max_value = 20.0, step = 0.5) 
     Earth = Object(init_x1,init_y1,init_vel,90,5.97e24,Days) 
