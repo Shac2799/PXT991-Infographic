@@ -38,8 +38,8 @@ class Object:
         self.angle= (angle/180)*np.pi # changing angle from degrees to radians for calcs
         self.num_days = num_days # defining duration of graphic
         
-        self.path_x = [] # storing coordinates of object
-        self.path_y = []
+        self.path_x = [self.x] # storing coordinates of object
+        self.path_y = [self.y]
         self.x_vel = self.initial_vel*math.cos(self.angle) # calculating initial x/y velocities 
         self.y_vel = self.initial_vel*math.sin(self.angle)
                   
