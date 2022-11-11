@@ -86,7 +86,7 @@ def main():
     height,width,_ = stars.shape
     
     plt.imshow(stars)
-    plt.scatter(sun.centre_x+(height/2),sun.centre_y-(width/2), color = 'tab:orange' , s = 500)
+    plt.scatter(sun.centre_x+(height/2),sun.centre_y+(width/2), color = 'tab:orange' , s = 500)
 #     plt.scatter(Earth.path_x,Earth.path_y, color = 'b', s = 5)
 #     plt.scatter(comet.path_x,comet.path_y, color = 'r', s = 5)
     plt.xlabel("Distance [AU]")
