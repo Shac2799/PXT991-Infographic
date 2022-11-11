@@ -80,16 +80,16 @@ def main():
     for day in range(int(Days)):
         Earth.update_path(sun)
         comet.update_path(sun)
-    #fig = plt.figure(figsize=(10,6))
-    data_earth = pd.DataFrame(Earth.path_x,Earth.path_y)
-    st.line_chart(data_earth)
-    #plt.scatter(sun.centre_x,sun.centre_y, color = 'tab:orange' , s = 500)
-    #plt.scatter(Earth.path_x,Earth.path_y, color = 'r', s = 10)
-    #plt.scatter(comet.path_x,comet.path_y, color = 'b', s = 10)
-    #plt.xlabel("Distance [AU]")
-    #plt.ylabel("Distance [AU]")
-    #plt.rcParams['axes.facecolor'] = 'black'
+    fig = plt.figure(figsize=(10,6))
+    plt.scatter(sun.centre_x,sun.centre_y, color = 'tab:orange' , s = 500)
+    plt.scatter(Earth.path_x,Earth.path_y, color = 'r', s = 10)
+    plt.scatter(comet.path_x,comet.path_y, color = 'b', s = 10)
+    plt.xlabel("Distance [AU]")
+    plt.ylabel("Distance [AU]")
+    plt.rcParams['axes.facecolor'] = 'black'
 main()
 
-#st.pyplot(fig=None, clear_figure=None)
+st.pyplot(fig=None, clear_figure=None)
 st.set_option('deprecation.showPyplotGlobalUse', False)
+#data_earth = pd.DataFrame(Earth.path_x,Earth.path_y)
+#st.line_chart(data_earth)
