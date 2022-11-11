@@ -83,7 +83,7 @@ def main():
         comet.update_path(sun)
     fig = plt.figure(figsize = (8,5), dpi = 100)
     stars = mpimg.imread("stars.jpg")
-    height,width,_ = stars.shape
+    width,height,_ = stars.shape
     
     plt.imshow(stars)
     plt.scatter(sun.centre_x+(height/2),sun.centre_y+(width/2), color = 'tab:orange' , s = 500)
