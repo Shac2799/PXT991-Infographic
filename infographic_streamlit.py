@@ -88,8 +88,8 @@ def main():
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
     plt.rcParams['axes.facecolor'] = 'black'
-    ax = plt.gca() #you first need to get the axis handle
-    ax.set_aspect(10) #
+    ax = plt.gca() 
+    ax.set_aspect('equal') 
     #plt.xlim([-3,3])
     #plt.ylim([-3,3])
 main()
