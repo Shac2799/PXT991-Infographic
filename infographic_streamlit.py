@@ -73,7 +73,7 @@ def main():
     init_x2 = st.slider("Initial x coordinate of Earth (blue)", min_value = -5.0, max_value = 5.0, step = 0.5,value = 1.0)
     init_y2 = st.slider("Initial y coordinate of Earth (blue)", min_value = -5.0, max_value = 5.0, step = 0.5,value = 0.0) 
     #sun_scale = radius_sun/Earth.AU  #  to be more accurate to scale of solar system
-    Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 1.0,value = 0.0)
+    Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     Earth = Object(init_x1,init_y1,init_vel,90,5.97e24,Days) 
     sun = Body(6.96e8,mass_body,0,0)
     comet = Object(init_x2,init_y2,init_vel,90,2.2e14,Days)#check why angle affects starting pos  
