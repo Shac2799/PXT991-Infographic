@@ -76,7 +76,7 @@ def main():
     Earth = Object(init_x1,init_y1,init_vel,90,5.97e24,Days) 
     sun = Body(696.343e6,mass_body,0,0)
     comet = Object(init_x2,init_y2,init_vel,90,2.2e14,Days)#check why angle affects starting pos  
-    for day in range(int(Days)):
+    for day in range(0,int(Days)):
         Earth.update_path(sun)
         comet.update_path(sun)
     fig = plt.figure(figsize=(10,6))
