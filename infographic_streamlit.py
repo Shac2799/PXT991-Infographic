@@ -74,15 +74,15 @@ def main():
     #sun_scale = radius_sun/Earth.AU  #  to be more accurate to scale of solar system
     Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 1.0,value = 0.0)
     Earth = Object(init_x1,init_y1,init_vel,90,5.97e24,Days) 
-    sun = Body(1,mass_body,0,0)
+    sun = Body(6.96e8,mass_body,0,0)
     comet = Object(init_x2,init_y2,init_vel,90,2.2e14,Days)#check why angle affects starting pos  
     fig = plt.figure(figsize=(10,6))
     plt.scatter(sun.centre_x,sun.centre_y, color = 'tab:orange' , s = 500)
-    for day in range(0,int(Days)):
+    for day in range(int(Days)):
         Earth.update_path(sun)
         comet.update_path(sun)
     plt.scatter(Earth.path_x,Earth.path_y, color = 'r', s = 10)
-    plt.scatter(comet.path_x,comet.path_y, color = 'b', s = 10)
+    #plt.scatter(comet.path_x,comet.path_y, color = 'b', s = 10)
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
     plt.rcParams['axes.facecolor'] = 'black'
