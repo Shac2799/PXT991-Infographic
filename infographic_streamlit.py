@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np 
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 import math
 import pandas as pd
 
@@ -65,23 +66,25 @@ class Object:
 
     
 def main():
+  
     mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0)
     init_vel1 = st.slider("Comet initial velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
     init_vel2 = st.slider("Earth initial velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
-    #Angle = st.slider("Angle of trajectory [Degrees]", min_value = -90.0, max_value = 90.0, step = 1.0)
-    #init_x1 = st.slider("Initial x coordinate of Comet (red)", min_value = -5.0, max_value = 5.0, step = 0.5,value = 2.0)
-    #init_y1 = st.slider("Initial y coordinate of Comet (red)", min_value = -5.0, max_value = 5.0, step = 0.5,value = 0.0) 
-    #init_x2 = st.slider("Initial x coordinate of Earth (blue)", min_value = -5.0, max_value = 5.0, step = 0.5,value = 1.0)
-    #init_y2 = st.slider("Initial y coordinate of Earth (blue)", min_value = -5.0, max_value = 5.0, step = 0.5,value = 0.0) 
-    #sun_scale = radius_sun/Earth.AU  #  to be more accurate to scale of solar system
     Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
+    
     Earth = Object(-1,0,init_vel2,90,5.97e24,Days) 
     sun = Body(6.96e8,mass_body,0,0)
     comet = Object(-2,0,init_vel1,90,2.2e14,Days)#check why angle affects starting pos  
+    
+    img = mpimg.imread('"C:\Users\shach\OneDrive\Documents\Data Intensive Astrophysics MSc\Advanced Techniques\stars_background.jpg"')
+    print(img)
     for day in range(int(Days)):
         Earth.update_path(sun)
         comet.update_path(sun)
     fig = plt.figure()
+    img = mpimg.imread("stars.jpg")
+    imgplot = plt.imshow(img)
+    #plt.show()
     plt.scatter(sun.centre_x,sun.centre_y, color = 'tab:orange' , s = 500)
     plt.scatter(Earth.path_x,Earth.path_y, color = 'b', s = 5)
     plt.scatter(comet.path_x,comet.path_y, color = 'r', s = 5)
