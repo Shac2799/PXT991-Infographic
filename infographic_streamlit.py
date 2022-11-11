@@ -89,7 +89,7 @@ def main():
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
     #plt.rcParams['axes.facecolor'] = 'black'
-    plt.imshow(img)
+    fig.imshow(img)
     #ax = plt.gca() 
     #ax.set_aspect('equal') 
     plt.xlim([-3,3])
