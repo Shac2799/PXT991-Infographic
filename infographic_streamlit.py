@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np 
 import matplotlib.pyplot as plt
 import math
+import pandas as pd
 
 st.set_page_config(page_title="Gravity Simulation", page_icon=None, 
                    layout="wide", initial_sidebar_state="auto", menu_items=None)
@@ -79,8 +80,9 @@ def main():
     for day in range(int(Days)):
         Earth.update_path(sun)
         comet.update_path(sun)
-    fig = plt.figure(figsize=(10,6))
-    st.line_chart(Earth.path_x,Earth.path_y)
+    #fig = plt.figure(figsize=(10,6))
+    data_earth = pd.DataFrame(Earth.path_x,Earth.path_y)
+    st.line_chart(data_earth)
     #plt.scatter(sun.centre_x,sun.centre_y, color = 'tab:orange' , s = 500)
     #plt.scatter(Earth.path_x,Earth.path_y, color = 'r', s = 10)
     #plt.scatter(comet.path_x,comet.path_y, color = 'b', s = 10)
