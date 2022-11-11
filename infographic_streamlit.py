@@ -87,6 +87,7 @@ def main():
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
     plt.rcParams['axes.facecolor'] = 'black'
+    plt.set_aspect(aspect='equal')
 main()
 
 st.pyplot(fig=None, clear_figure=None)
