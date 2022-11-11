@@ -80,14 +80,14 @@ def main():
     for day in range(int(Days)):
         Earth.update_path(sun)
         comet.update_path(sun)
-    fig = plt.figure(figsize=(10,6))
+    fig = plt.figure(figsize=(10,6),aspect = 'equal')
     plt.scatter(sun.centre_x,sun.centre_y, color = 'tab:orange' , s = 500)
     plt.scatter(Earth.path_x,Earth.path_y, color = 'r', s = 10)
     plt.scatter(comet.path_x,comet.path_y, color = 'b', s = 10)
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
     plt.rcParams['axes.facecolor'] = 'black'
-    plt.set_aspect('equal')
+    #plt.set_aspect('equal')
 main()
 
 st.pyplot(fig=None, clear_figure=None)
