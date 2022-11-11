@@ -66,7 +66,7 @@ class Object:
     
 def main():
     mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0)
-    init_vel = st.slider("Object initial velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 0.0)
+    init_vel = st.slider("Object initial velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
     #Angle = st.slider("Angle of trajectory [Degrees]", min_value = -90.0, max_value = 90.0, step = 1.0)
     init_x1 = st.slider("Initial x coordinate of Comet (red)", min_value = -5.0, max_value = 5.0, step = 0.5,value = 2.0)
     init_y1 = st.slider("Initial y coordinate of Comet (red)", min_value = -5.0, max_value = 5.0, step = 0.5,value = 0.0) 
