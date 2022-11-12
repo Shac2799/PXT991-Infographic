@@ -48,18 +48,18 @@ class Object:
         self.y_vel = 30000 # initialise y-vel at 30 km/s ~ Earth's velocity
     def distance_between(self,body):
         pos_x = body.centre_x - self.x # coords of object relative to star/body
-        pos_y = body.centre_y - self.y  
-
-        if pos_x == 0:
-            theta = np.pi/2
-
-        else:
-            theta = math.atan2(pos_y,pos_x) # atan2 goes from -pi to pi (atan only pi/2)
-            distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
+        pos_y = body.centre_y - self.y             
+        distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
         return distance_metres
     
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
         distance_metres = self.distance_between(body)
+        
+        if pos_x == 0:
+            theta = np.pi/2
+        else:
+            theta = math.atan2(pos_y,pos_x) # atan2 goes from -pi to pi (atan only pi/2)
+            
         force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
         force_y = force*math.sin(theta)  # force in x and y directions
         force_x = force*math.cos(theta)
