@@ -88,7 +88,7 @@ def main():
     
     Earth = Object(-1,0,init_vel2,90,5.97e24,Days) 
     sun = Body(6.96e8,mass_body,0,0)
-    asteroid = Object(-2,0,init_vel1,90,2.2e14,Days)
+    asteroid = Object(-3,0,init_vel1,90,2.2e14,Days)
     
     stars = mpimg.imread("stars.jpg") # importing image for background
     sun_scaledx, sun_scaledy = 853/2,480/2 # setting sun's initial position at centre of image
@@ -98,12 +98,15 @@ def main():
         Earth.update_path(sun)
         asteroid.update_path(sun)
     
-    fig = plt.figure(figsize = (8,5), dpi = 100)
-    plt.imshow(stars) # plot image
-    plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun position
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
+    xs = np.arange(0,853,6)
+    ys = np.arange(0,480,6)
+    labels = [-3,-2,-1,0,1,2,3]
     
+    fig = plt.figure(figsize = (8,5), dpi = 100)
+    plt.imshow(stars) # plot image
+    plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
     plt.scatter(earth_x,earth_y, color = 'r', s = 5) # plot Earth
     plt.scatter(asteroid_x,asteroid_y, color = 'b', s = 5) # plot asteroid
     plt.xlim(xlim)
