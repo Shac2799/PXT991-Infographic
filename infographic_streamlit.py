@@ -88,7 +88,7 @@ def main():
     
     Earth = Object(-1,0,init_vel2,90,5.97e24,Days) 
     sun = Body(6.96e8,mass_body,0,0)
-    asteroid = Object(-3,0,init_vel1,90,2.2e14,Days)
+    asteroid = Object(-2,0,init_vel1,90,2.2e14,Days)
     
     stars = mpimg.imread("stars.jpg") # importing image for background
     sun_scaledx, sun_scaledy = 853/2,480/2 # setting sun's initial position at centre of image
@@ -107,8 +107,8 @@ def main():
     fig = plt.figure(figsize = (8,5), dpi = 100)
     plt.imshow(stars) # plot image
     plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
-    plt.scatter(earth_x,earth_y, color = 'r', s = 5) # plot Earth
-    plt.scatter(asteroid_x,asteroid_y, color = 'b', s = 5) # plot asteroid
+    plt.scatter(earth_x,earth_y, color = 'b', s = 5) # plot Earth
+    plt.scatter(asteroid_x,asteroid_y, color = 'r', s = 5) # plot asteroid
     plt.xlim(xlim)
     plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
