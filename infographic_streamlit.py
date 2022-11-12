@@ -116,10 +116,11 @@ def main():
     plt.ylabel("Distance [AU]")
     plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
-    #plt.rcParams['axes.facecolor'] = 'black'
-    plt.show()
     ax = plt.gca() 
     ax.set_aspect('equal') 
+    #plt.rcParams['axes.facecolor'] = 'black'
+    plt.show()
+
 main()
 
 st.pyplot(fig=None, clear_figure=None)
