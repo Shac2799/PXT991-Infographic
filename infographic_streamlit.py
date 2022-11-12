@@ -44,7 +44,7 @@ class Object:
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
         self.x_vel = 0 #initialise x vel 
-        self.y_vel = 0#self.initial_vel # initialise y vel
+        self.y_vel = 0 #self.initial_vel # initialise y vel
     
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
         pos_x = body.centre_x - self.x # coords of object relative to star/body
@@ -64,8 +64,8 @@ class Object:
         r = self.distance
         return self.mass*self.y_vel*r
         
-    def update_path(self,other_body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
-        f_x , f_y = self.force_of_attract(other_body) 
+    def update_path(self,body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
+        f_x , f_y = self.force_of_attract(body) 
         self.y_vel = np.sqrt((body.G*body.mass)/self.distance) # v = sqrt(GM/r)
         self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
         self.y_vel += (f_y/self.mass)*self.time_interval
