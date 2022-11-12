@@ -48,40 +48,43 @@ class Object:
         self.y_vel = 30000 # initialise y-vel at 30 km/s ~ Earth's velocity
                   
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
-            pos_x = body.centre_x - self.x # coords of object relative to star/body
-            pos_y = body.centre_y - self.y  
+        pos_x = body.centre_x - self.x # coords of object relative to star/body
+        pos_y = body.centre_y - self.y  
 
-            if pos_x == 0:
-                theta = np.pi/2
+        if pos_x == 0:
+            theta = np.pi/2
 
-            else:
-                theta = math.atan2(pos_y,pos_x) # atan2 goes from -pi to pi (atan only pi/2)
-            distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
-            force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
-            force_y = force*math.sin(theta)  # force in x and y directions
-            force_x = force*math.cos(theta)
-            return force_x,force_y
-        
+        else:
+            theta = math.atan2(pos_y,pos_x) # atan2 goes from -pi to pi (atan only pi/2)
+        distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
+        force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
+        force_y = force*math.sin(theta)  # force in x and y directions
+        force_x = force*math.cos(theta)
+        return force_x,force_y
+
     def update_path(self,other_body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
-            f_x , f_y = self.force_of_attract(other_body) 
-            self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
-            self.y_vel += (f_y/self.mass)*self.time_interval
-            self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
-            self.y += self.y_vel*self.time_interval
-            self.path_x.append(self.x/self.AU) # storing position in array
-            self.path_y.append(self.y/self.AU)
+        f_x , f_y = self.force_of_attract(other_body) 
+        self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
+        self.y_vel += (f_y/self.mass)*self.time_interval
+        self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
+        self.y += self.y_vel*self.time_interval
+        self.path_x.append(self.x/self.AU) # storing position in array
+        self.path_y.append(self.y/self.AU)
             
     def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
-            height,width,_ = image.shape # dimensions of image
-            image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
-            new_centrex = width/2 # coords for centre of image
-            new_centrey = height/2    
-            x_scale = width/sum(abs(np.array(x_limit))) # number of pixels within the limits
-            y_scale = height/sum(abs(np.array(y_limit)))
-            img_posx = [(posx*x_scale + new_centrex) for posx in self.path_x] # calculating the re-scaled positions relative to image 
-            img_posy = [(posy*y_scale + new_centrey) for posy in self.path_y]
-            return img_posx, img_posy, image_xlim, image_ylim
+        height,width,_ = image.shape # dimensions of image
+        image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
+        new_centrex = width/2 # coords for centre of image
+        new_centrey = height/2    
+        x_scale = width/sum(abs(np.array(x_limit))) # number of pixels within the limits
+        y_scale = height/sum(abs(np.array(y_limit)))
+        img_posx = [(posx*x_scale + new_centrex) for posx in self.path_x] # calculating the re-scaled positions relative to image 
+        img_posy = [(posy*y_scale + new_centrey) for posy in self.path_y]
+        return img_posx, img_posy, image_xlim, image_ylim
+    #def angular_momentum(self):
         
+      
+      
 
     
 def main():
