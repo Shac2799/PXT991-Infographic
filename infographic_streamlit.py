@@ -91,6 +91,7 @@ def main():
     asteroid = Object(-2,0,init_vel1,90,2.2e14,Days)
     
     stars = mpimg.imread("stars.jpg") # importing image for background
+    height,width,_ = stars.shape
     sun_scaledx, sun_scaledy = 853/2,480/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-3,3] # -3 to 3 AU limits
     
@@ -100,8 +101,8 @@ def main():
     
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
-    oldx = np.linspace(0,853,7)
-    oldy = np.linspace(0,480,7)
+    oldx = np.linspace(0,width,7)
+    oldy = np.linspace(0,height,7)
     AU = [-3,-2,-1,0,1,2,3]          
         
     fig = plt.figure(figsize = (8,5), dpi = 100)
