@@ -39,13 +39,12 @@ class Object:
         self.y = y*self.AU
         self.initial_vel = initial_vel*1000 # initial velocity in m/s
         self.mass = mass # mass in kg
-        #self.angle= (angle/180)*np.pi # changing angle from degrees to radians for calcs
         self.num_days = num_days # defining duration of graphic
-        
+        self.distance = 0
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
-        self.x_vel = 0 #self.initial_vel*math.cos(self.angle) # calculating initial x/y velocities 
-        self.y_vel = self.initial_vel #*math.sin(self.angle)          #30000 # initialise y-vel at 30 km/s ~ Earth's velocity
+        self.x_vel = 0 #initialise x vel 
+        self.y_vel = self.initial_vel # initialise y vel
     
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
         pos_x = body.centre_x - self.x # coords of object relative to star/body
@@ -58,15 +57,13 @@ class Object:
         force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
         force_y = force*math.sin(theta)  # force in x and y directions
         force_x = force*math.cos(theta)
+        self.distance = distance_metres
         return force_x,force_y
       
     def angular_momentum(self,body):
-        pos_x = body.centre_x - self.x # coords of object relative to star/body
-        pos_y = body.centre_y - self.y       
-        r = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
+        r = self.distance
         return self.mass*self.y_vel*r
         
-    
     def update_path(self,other_body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
         f_x , f_y = self.force_of_attract(other_body) 
         self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
