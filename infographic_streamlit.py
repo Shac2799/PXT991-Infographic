@@ -100,12 +100,10 @@ def main():
     
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
-    x_AU = [-3,-2,-1,0,1,2,3]
-    step_x = 853/6
-    xs = np.arange(0,853,step_x)
-    #x_labels = xs[::step_x]
-    #ys = []
-    
+    oldx = np.linspace(0,853,7)
+    oldy = np.linspace(0,480,7)
+    AU = [-3,-2,-1,0,1,2,3]          
+        
     fig = plt.figure(figsize = (8,5), dpi = 100)
     plt.imshow(stars) # plot image
     plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
@@ -115,7 +113,8 @@ def main():
     plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
-    plt.xticks(xs,x_AU)
+    plt.xticks(oldx,AU)
+    plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
     #ax = plt.gca() 
