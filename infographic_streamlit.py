@@ -128,7 +128,7 @@ def main():
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
     #L_data = pd.DataFrame(Earth.L)
-    plt.figure()
+    
     st.line_chart(Earth.L)
     
 main()
