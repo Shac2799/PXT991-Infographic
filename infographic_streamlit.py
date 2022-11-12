@@ -46,6 +46,8 @@ class Object:
         self.x_vel = 0 #initialise x vel 
         self.y_vel = self.velocity # initialise y vel
         self.L = []
+        self.KE,self.PE = [], []
+        
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
         pos_x = body.centre_x - self.x # coords of object relative to star/body
         pos_y = body.centre_y - self.y             
@@ -58,15 +60,13 @@ class Object:
         force_y = force*math.sin(theta)  # force in x and y directions
         force_x = force*math.cos(theta)
         self.distance = distance_metres
+        self.L.append(self.mass*self.y_vel*distance_metres)
+        self.KE.append(0.5*self.mass*(self.y_vel**2)) # 1/2mv^2
+        self.PE.append(-force*distance_metres) # -GMm/r
         return force_x,force_y
-      
-    def angular_momentum(self,body):
-        r = self.distance
-        self.L.append(self.mass*self.y_vel*r)
         
     def update_path(self,body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
         f_x , f_y = self.force_of_attract(body) 
-        self.angular_momentum(body)
         self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
         self.y_vel += (f_y/self.mass)*self.time_interval
         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
@@ -115,7 +115,6 @@ def main():
     AU = [-3,-2,-1,0,1,2,3]          
         
     fig = plt.figure(figsize = (8,5), dpi = 100)
-    plt.subplot(2,1,1)
     plt.imshow(stars) # plot image
     plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
     plt.scatter(earth_x,earth_y, color = 'b', s = 5) # plot Earth
@@ -127,10 +126,10 @@ def main():
     plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
-    #plt.show()
-    #L_data = pd.DataFrame(Earth.L)
-    plt.subplot(2,1,2)
-    st.line_chart(Earth.L)
+    plt.show()
+    energy_data = pd.DataFrame([Earth.KE,Earth.PE],columns = ['Ek', 'PE'])
+    st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
+    #st.line_chart(Earth.L,x = 'Days', y = 'Dngular momentum')
     
 main()
 
