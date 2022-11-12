@@ -97,7 +97,7 @@ def main():
     
     stars = mpimg.imread("stars.jpg") # importing image for background
     height,width,_ = stars.shape
-    sun_scaledx, sun_scaledy = 853/2,480/2 # setting sun's initial position at centre of image
+    sun_scaledx, sun_scaledy = width/2,height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-3,3] # -3 to 3 AU limits
     
     for day in range(int(Days)): # get complete array of positions of objects over x days 
