@@ -46,14 +46,15 @@ class Object:
         self.path_y = [self.y/self.AU]
         self.x_vel = self.initial_vel*math.cos(self.angle) # calculating initial x/y velocities 
         self.y_vel = 30000 # initialise y-vel at 30 km/s ~ Earth's velocity
+        
     def distance_between(self,body):
         pos_x = body.centre_x - self.x # coords of object relative to star/body
         pos_y = body.centre_y - self.y             
         distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
-        return distance_metres
+        return pos_x,pos_y,distance_metres
     
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
-        distance_metres = self.distance_between(body)
+        pos_x,pos_y,distance_metres = self.distance_between(body)
         
         if pos_x == 0:
             theta = np.pi/2
