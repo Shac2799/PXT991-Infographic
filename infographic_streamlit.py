@@ -66,6 +66,7 @@ class Object:
         
     def update_path(self,body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
         f_x , f_y = self.force_of_attract(body) 
+        self.angular_momentum(body)
         self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
         self.y_vel += (f_y/self.mass)*self.time_interval
         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
@@ -126,10 +127,12 @@ def main():
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
-
+    #L_data = pd.DataFrame(Earth.L)
+    plt.figure()
+    st.line_chart(Earth.L)
+    
 main()
 
 st.pyplot(fig=None, clear_figure=None)
 st.set_option('deprecation.showPyplotGlobalUse', False)
-#data_earth = pd.DataFrame(Earth.path_x,Earth.path_y)
-#st.line_chart(data_earth)
+
