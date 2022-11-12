@@ -33,18 +33,18 @@ class Body:
 class Object:
     AU = 149.6e9 # Astronomical units in metres
     time_interval = 86400 # number of seconds in a year
-    def __init__(self,x,y,initial_vel,mass,num_days):
+    def __init__(self,x,y,velocity,mass,num_days):
         
         self.x = x*self.AU # converting from AU to m
         self.y = y*self.AU
-        self.initial_vel = initial_vel*1000 # initial velocity in m/s
+        self.velocity = velocity*1000 # initial velocity in m/s
         self.mass = mass # mass in kg
         self.num_days = num_days # defining duration of graphic
         self.distance = 0
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
-        self.x_vel = self.initial_vel #initialise x vel 
-        self.y_vel = 30000#self.initial_vel # initialise y vel
+        self.x_vel = 0 #initialise x vel 
+        self.y_vel = self.velocity # initialise y vel
         self.L = []
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
         pos_x = body.centre_x - self.x # coords of object relative to star/body
