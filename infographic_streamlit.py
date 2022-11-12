@@ -50,12 +50,14 @@ class Object:
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
             pos_x = body.centre_x - self.x # coords of object relative to star/body
             pos_y = body.centre_y - self.y  
-            theta = math.atan2(pos_y,pos_x)
+
+            if pos_x == 0:
+                theta = np.pi/2
+
+            else:
+                theta = math.atan2(pos_y,pos_x) # atan2 goes from -pi to pi (atan only pi/2)
             distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
             force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
-#             if theta*(180/np.pi) < 2.5:
-#               return force, 0
-#             else:
             force_y = force*math.sin(theta)  # force in x and y directions
             force_x = force*math.cos(theta)
             return force_x,force_y
