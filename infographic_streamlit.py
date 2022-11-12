@@ -100,12 +100,12 @@ def main():
     
     fig = plt.figure(figsize = (8,5), dpi = 100)
     plt.imshow(stars) # plot image
-    plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun
-    earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) # plot earth
-    asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) #plot asteroid
-    plt.imshow(stars)
-    plt.scatter(earth_x,earth_y, color = 'r', s = 5)
-    plt.scatter(asteroid_x,asteroid_y, color = 'b', s = 5)
+    plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun position
+    earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
+    asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
+    
+    plt.scatter(earth_x,earth_y, color = 'r', s = 5) # plot Earth
+    plt.scatter(asteroid_x,asteroid_y, color = 'b', s = 5) # plot asteroid
     plt.xlim(xlim)
     plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
