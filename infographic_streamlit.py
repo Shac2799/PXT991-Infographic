@@ -115,6 +115,7 @@ def main():
     AU = [-3,-2,-1,0,1,2,3]          
         
     fig = plt.figure(figsize = (8,5), dpi = 100)
+    fig.add_subplot(211)
     plt.imshow(stars) # plot image
     plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
     plt.scatter(earth_x,earth_y, color = 'b', s = 5) # plot Earth
@@ -128,7 +129,7 @@ def main():
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
     #L_data = pd.DataFrame(Earth.L)
-    
+    fig.add_subplot(212)
     st.line_chart(Earth.L)
     
 main()
