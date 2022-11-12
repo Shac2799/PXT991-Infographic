@@ -65,6 +65,17 @@ class Object:
             self.y += self.y_vel*self.time_interval
             self.path_x.append(self.x/self.AU) 
             self.path_y.append(self.y/self.AU)
+    def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
+            height,width,_ = image.shape
+            image_xlim, image_ylim = [0,width], [0,height]
+            new_centrex = width/2
+            new_centrey = height/2    
+            x_scale = width/sum(abs(np.array(x_limit))) # number of pixels from -3 to 3 AU for limits
+            y_scale = height/sum(abs(np.array(y_limit)))
+            img_posx = [(posx*x_scale + new_centrex) for posx in self.path_x]
+            img_posy = [(posy*y_scale + new_centrey) for posy in self.path_y]
+            return img_posx, img_posy, image_xlim, image_ylim
+        
 
     
 def main():
@@ -78,25 +89,31 @@ def main():
     sun = Body(6.96e8,mass_body,0,0)
     comet = Object(-2,0,init_vel1,90,2.2e14,Days)#check why angle affects starting pos  
     
+    stars = mpimg.imread("stars.jpg")
+    sun_scaledx, sun_scaledy = 853/2,480/2
+    x_lim = y_lim = [-3,3]
+    
     for day in range(int(Days)):
         Earth.update_path(sun)
         comet.update_path(sun)
-    fig = plt.figure(figsize = (8,5), dpi = 100)
-    stars = mpimg.imread("stars.jpg")
-    height,width,_ = stars.shape
     
-    #plt.imshow(stars)
-    plt.scatter(0,0, color = 'tab:orange' , s = 500)
-    plt.scatter(Earth.path_x,Earth.path_y, color = 'b', s = 5)
-    plt.scatter(comet.path_x,comet.path_y, color = 'r', s = 5)
+    fig = plt.figure(figsize = (8,5), dpi = 100)
+    plt.imshow(stars)
+    plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500)
+    earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim)
+    comet_x,comet_y,_,_ = comet.rescale_grid(stars, x_lim, y_lim)
+    plt.imshow(stars)
+    plt.scatter(earth_x,earth_y, color = 'r', s = 5)
+    plt.scatter(comet_x,comet_y, color = 'b', s = 5)
+    plt.scatter(sun_scaledx,sun_scaledy, color = 'y' , s = 100)
+    plt.xlim(xlim)
+    plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
-    plt.rcParams['axes.facecolor'] = 'black'
+    #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
     #ax = plt.gca() 
     #ax.set_aspect('equal') 
-    plt.xlim([-3,3])
-    plt.ylim([-3,3])
 main()
 
 st.pyplot(fig=None, clear_figure=None)
