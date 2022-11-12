@@ -59,7 +59,7 @@ class Object:
         return distance_metres
     
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
-        self.distance_between(body)
+        distance_metres = self.distance_between(body)
         force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
         force_y = force*math.sin(theta)  # force in x and y directions
         force_x = force*math.cos(theta)
