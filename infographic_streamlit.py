@@ -43,9 +43,9 @@ class Object:
         self.distance = 0
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
-        self.x_vel = 0 #initialise x vel 
-        self.y_vel = self.initial_vel # initialise y vel
-    
+        self.x_vel = initial_vel #initialise x vel 
+        self.y_vel = 30000#self.initial_vel # initialise y vel
+        self.L = []
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
         pos_x = body.centre_x - self.x # coords of object relative to star/body
         pos_y = body.centre_y - self.y             
@@ -62,7 +62,7 @@ class Object:
       
     def angular_momentum(self,body):
         r = self.distance
-        return self.mass*self.y_vel*r
+        self.L.append(self.mass*self.y_vel*r)
         
     def update_path(self,body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
         f_x , f_y = self.force_of_attract(body) 
