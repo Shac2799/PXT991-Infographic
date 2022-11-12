@@ -118,8 +118,8 @@ def main():
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
-    #ax = plt.gca() 
-    #ax.set_aspect('equal') 
+    ax = plt.gca() 
+    ax.set_aspect('equal') 
 main()
 
 st.pyplot(fig=None, clear_figure=None)
