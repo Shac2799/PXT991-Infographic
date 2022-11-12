@@ -85,18 +85,18 @@ def main():
     stars = mpimg.imread("stars.jpg")
     width,height,_ = stars.shape
     
-    plt.imshow(stars)
-    plt.scatter(height/2,width/2, color = 'tab:orange' , s = 500)
-#     plt.scatter(Earth.path_x,Earth.path_y, color = 'b', s = 5)
-#     plt.scatter(comet.path_x,comet.path_y, color = 'r', s = 5)
+    #plt.imshow(stars)
+    plt.scatter(0,0, color = 'tab:orange' , s = 500)
+    plt.scatter(Earth.path_x,Earth.path_y, color = 'b', s = 5)
+    plt.scatter(comet.path_x,comet.path_y, color = 'r', s = 5)
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
-#     plt.rcParams['axes.facecolor'] = 'black'
+    plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
     #ax = plt.gca() 
     #ax.set_aspect('equal') 
-#     plt.xlim([-3,3])
-#     plt.ylim([-3,3])
+    plt.xlim([-3,3])
+    plt.ylim([-3,3])
 main()
 
 st.pyplot(fig=None, clear_figure=None)
