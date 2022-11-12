@@ -66,10 +66,11 @@ class Object:
         force_x = force*math.cos(theta)
         return force_x,force_y
       
-#     def angular_momentum(self,body):
-       
-#         r = distance_between(body)
-#         return self.mass*self.y_vel*r
+    def angular_momentum(self,body):
+        pos_x = body.centre_x - self.x # coords of object relative to star/body
+        pos_y = body.centre_y - self.y       
+        distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
+        return self.mass*self.y_vel*r
         
     
     def update_path(self,other_body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
@@ -94,8 +95,6 @@ class Object:
       
 
       
-      
-
     
 def main():
   
