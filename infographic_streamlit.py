@@ -46,8 +46,7 @@ class Object:
         self.path_y = [self.y/self.AU]
         self.x_vel = self.initial_vel*math.cos(self.angle) # calculating initial x/y velocities 
         self.y_vel = 30000 # initialise y-vel at 30 km/s ~ Earth's velocity
-                  
-    def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
+    def distance_between(self,body)
         pos_x = body.centre_x - self.x # coords of object relative to star/body
         pos_y = body.centre_y - self.y  
 
@@ -56,12 +55,21 @@ class Object:
 
         else:
             theta = math.atan2(pos_y,pos_x) # atan2 goes from -pi to pi (atan only pi/2)
-        distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
+            distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
+        return distance_metres
+    
+    def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
+        self.distance_between(body)
         force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
         force_y = force*math.sin(theta)  # force in x and y directions
         force_x = force*math.cos(theta)
         return force_x,force_y
-
+      
+    def angular_momentum(self,body):
+        r = distance_between(body)
+        return self.mass*self.y_vel*r
+        
+    
     def update_path(self,other_body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
         f_x , f_y = self.force_of_attract(other_body) 
         self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
@@ -81,8 +89,8 @@ class Object:
         img_posx = [(posx*x_scale + new_centrex) for posx in self.path_x] # calculating the re-scaled positions relative to image 
         img_posy = [(posy*y_scale + new_centrey) for posy in self.path_y]
         return img_posx, img_posy, image_xlim, image_ylim
-    #def angular_momentum(self):
-        
+      
+
       
       
 
