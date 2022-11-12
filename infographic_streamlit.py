@@ -115,6 +115,7 @@ def main():
     AU = [-3,-2,-1,0,1,2,3]          
         
     fig = plt.figure(figsize = (8,5), dpi = 100)
+    plt.subplot(2,1,1)
     plt.imshow(stars) # plot image
     plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
     plt.scatter(earth_x,earth_y, color = 'b', s = 5) # plot Earth
@@ -126,10 +127,11 @@ def main():
     plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
-    plt.show()
+    #plt.show()
     #L_data = pd.DataFrame(Earth.L)
+    plt.subplot(2,1,2)
     st.line_chart(Earth.L)
-    plt.show()
+    
 main()
 
 st.pyplot(fig=None, clear_figure=None)
