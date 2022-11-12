@@ -53,9 +53,12 @@ class Object:
             theta = math.atan2(pos_y,pos_x)
             distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
             force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
-            force_y = force*math.sin(theta)  # force in x and y directions
-            force_x = force*math.cos(theta)
-            return force_x,force_y
+            if theta*(180/np.pi) < 2.5:
+              return force, 0
+            else:
+              force_y = force*math.sin(theta)  # force in x and y directions
+              force_x = force*math.cos(theta)
+              return force_x,force_y
         
     def update_path(self,other_body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
             f_x , f_y = self.force_of_attract(other_body) 
@@ -86,9 +89,9 @@ def main():
     init_vel2 = st.slider("Earth initial velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
     Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     
-    Earth = Object(1,0,init_vel2,90,5.97e24,Days) 
+    Earth = Object(1,0,init_vel2,0,5.97e24,Days) 
+    asteroid = Object(2,0,init_vel1,0,2.2e14,Days)
     sun = Body(6.96e8,mass_body,0,0)
-    asteroid = Object(2,0,init_vel1,90,2.2e14,Days)
     
     stars = mpimg.imread("stars.jpg") # importing image for background
     height,width,_ = stars.shape
@@ -116,8 +119,6 @@ def main():
     plt.ylabel("Distance [AU]")
     plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
-    ax = plt.gca() 
-    ax.set_aspect('equal') 
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
 
