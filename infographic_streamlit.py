@@ -45,7 +45,7 @@ class Object:
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
         self.x_vel = self.initial_vel*math.cos(self.angle) # calculating initial x/y velocities 
-        self.y_vel = 30*math.sin(self.angle) # initialise y-vel at 30 km/s ~ Earth's velocity
+        self.y_vel = 30*math.sin(self.angle)*1000 # initialise y-vel at 30 km/s ~ Earth's velocity
                   
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
             pos_x = body.centre_x - self.x # coords of object relative to star/body
