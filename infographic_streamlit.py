@@ -53,12 +53,12 @@ class Object:
             theta = math.atan2(pos_y,pos_x)
             distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
             force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
-            if theta*(180/np.pi) < 2.5:
-              return force, 0
-            else:
-              force_y = force*math.sin(theta)  # force in x and y directions
-              force_x = force*math.cos(theta)
-              return force_x,force_y
+#             if theta*(180/np.pi) < 2.5:
+#               return force, 0
+#             else:
+            force_y = force*math.sin(theta)  # force in x and y directions
+            force_x = force*math.cos(theta)
+            return force_x,force_y
         
     def update_path(self,other_body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
             f_x , f_y = self.force_of_attract(other_body) 
