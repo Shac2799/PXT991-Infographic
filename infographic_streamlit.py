@@ -63,7 +63,7 @@ class Object:
     def angular_momentum(self,body):
         pos_x = body.centre_x - self.x # coords of object relative to star/body
         pos_y = body.centre_y - self.y       
-        distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
+        r = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
         return self.mass*self.y_vel*r
         
     
