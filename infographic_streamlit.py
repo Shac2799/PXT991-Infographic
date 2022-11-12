@@ -105,7 +105,6 @@ def main():
     plt.imshow(stars)
     plt.scatter(earth_x,earth_y, color = 'r', s = 5)
     plt.scatter(comet_x,comet_y, color = 'b', s = 5)
-    plt.scatter(sun_scaledx,sun_scaledy, color = 'y' , s = 100)
     plt.xlim(xlim)
     plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
