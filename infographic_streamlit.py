@@ -103,7 +103,7 @@ def main():
     x_AU = [-3,-2,-1,0,1,2,3]
     step_x = 853/6
     xs = np.arange(0,853,step_x)
-    x_labels = xs[::step_x]
+    #x_labels = xs[::step_x]
     #ys = []
     
     fig = plt.figure(figsize = (8,5), dpi = 100)
