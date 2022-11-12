@@ -100,9 +100,11 @@ def main():
     
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
-    xs = np.arange(0,853,7)
-    ys = np.arange(0,480,7)
-    labels = [-3,-2,-1,0,1,2,3]
+    x_AU = [-3,-2,-1,0,1,2,3]
+    step_x = 853/6
+    xs = np.arange(0,853,step_x)
+    x_labels = xs[::step_x]
+    #ys = []
     
     fig = plt.figure(figsize = (8,5), dpi = 100)
     plt.imshow(stars) # plot image
@@ -113,7 +115,7 @@ def main():
     plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
-    plt.xticks(xs,labels)
+    plt.xticks(xs,x_AU)
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
     #ax = plt.gca() 
