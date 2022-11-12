@@ -90,8 +90,8 @@ class Object:
 def main():
   
     mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0) 
-    init_vel1 = st.slider("Asteroid velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
-    init_vel2 = st.slider("Earth velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
+    init_vel1 = st.slider("Asteroid orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
+    init_vel2 = st.slider("Earth orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
     Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     
     Earth = Object(-1,0,init_vel2,5.97e24,Days) 
