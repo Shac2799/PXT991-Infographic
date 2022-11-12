@@ -86,8 +86,8 @@ def main():
     init_vel2 = st.slider("Earth initial velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
     Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     
-    Earth = Object(1,0,init_vel2,0,5.97e24,Days) 
-    sun = Body(6.96e8,mass_body,0,0)
+    Earth = Object(1,0,init_vel2,90,5.97e24,Days) 
+    sun = Body(6.96e8,mass_body,90,0)
     asteroid = Object(2,0,init_vel1,0,2.2e14,Days)
     
     stars = mpimg.imread("stars.jpg") # importing image for background
