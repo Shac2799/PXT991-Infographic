@@ -129,6 +129,7 @@ def main():
     plt.show()
     plt.figure()
     plt.plot(Earth.PE)
+    plt.plot(Earth.KE)
 #     energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
 #     st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
     #st.line_chart(Earth.L,x = 'Days', y = 'Dngular momentum')
