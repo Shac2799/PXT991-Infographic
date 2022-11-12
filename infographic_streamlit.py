@@ -127,7 +127,7 @@ def main():
     plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
-    plt.show()
+    #plt.show()
     #L_data = pd.DataFrame(Earth.L)
     fig.add_subplot(212)
     st.line_chart(Earth.L)
