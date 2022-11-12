@@ -33,19 +33,19 @@ class Body:
 class Object:
     AU = 149.6e9 # Astronomical units in metres
     time_interval = 86400 # number of seconds in a year
-    def __init__(self,x,y,initial_vel,angle,mass,num_days):
+    def __init__(self,x,y,initial_vel,mass,num_days):
         
         self.x = x*self.AU # converting from AU to m
         self.y = y*self.AU
         self.initial_vel = initial_vel*1000 # initial velocity in m/s
         self.mass = mass # mass in kg
-        self.angle= (angle/180)*np.pi # changing angle from degrees to radians for calcs
+        #self.angle= (angle/180)*np.pi # changing angle from degrees to radians for calcs
         self.num_days = num_days # defining duration of graphic
         
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
-        self.x_vel = self.initial_vel*math.cos(self.angle) # calculating initial x/y velocities 
-        self.y_vel = self.initial_vel*math.sin(self.angle)          #30000 # initialise y-vel at 30 km/s ~ Earth's velocity
+        self.x_vel = 0 #self.initial_vel*math.cos(self.angle) # calculating initial x/y velocities 
+        self.y_vel = self.initial_vel #*math.sin(self.angle)          #30000 # initialise y-vel at 30 km/s ~ Earth's velocity
     
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
         pos_x = body.centre_x - self.x # coords of object relative to star/body
@@ -97,8 +97,8 @@ def main():
     init_vel2 = st.slider("Earth initial velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
     Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     
-    Earth = Object(1,0,init_vel2,90,5.97e24,Days) 
-    asteroid = Object(2,0,init_vel1,90,2.2e14,Days)
+    Earth = Object(1,0,init_vel2,5.97e24,Days) 
+    asteroid = Object(2,0,init_vel1,2.2e14,Days)
     sun = Body(6.96e8,mass_body,0,0)
     
     stars = mpimg.imread("stars.jpg") # importing image for background
