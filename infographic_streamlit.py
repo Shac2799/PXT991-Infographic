@@ -114,7 +114,7 @@ def main():
     plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
-    plt.xticks(oldx,AU)
+    plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
