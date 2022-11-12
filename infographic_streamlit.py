@@ -129,7 +129,7 @@ def main():
     plt.show()
     #L_data = pd.DataFrame(Earth.L)
     st.line_chart(Earth.L)
-    
+    plt.show()
 main()
 
 st.pyplot(fig=None, clear_figure=None)
