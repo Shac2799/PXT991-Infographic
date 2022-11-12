@@ -43,7 +43,7 @@ class Object:
         self.distance = 0
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
-        self.x_vel = initial_vel #initialise x vel 
+        self.x_vel = self.initial_vel #initialise x vel 
         self.y_vel = 30000#self.initial_vel # initialise y vel
         self.L = []
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
