@@ -164,10 +164,9 @@ def main():
       ax.add_artist(ab_asteroidimg) # adding image of Earth to last coordinate in path
 
     #plotting earth
-    days_all = np.arange(0,5001,5)
     # Plots the Earth png in most recent position
     paths_df = pd.DataFrame({'x-coords':earth_x,'y-coords':earth_y,'day':Days})
-    px.scatter(paths_df,x = 'x-coords',y = 'y-coords', animation_frame='day',animation_group='x-coords')
+    px.scatter(paths_df,x = 'x-coords',y = 'y-coords', animation_frame='day',animation_group='day')
     
     ax.scatter(earth_x,earth_y, color = 'b', s = 0.3) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
