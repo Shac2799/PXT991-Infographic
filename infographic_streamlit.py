@@ -100,7 +100,7 @@ def main():
     
     stars = mpimg.imread("stars.jpg") # importing images
     Sun_img = mpimg.imread("Sun.png")
-    Earth_img = mpimg.imread("Earth.png")
+    Earth_img = mpimg.imread("Earth2.png")
     Asteroid_img = mpimg.imread("meteor2.png")
     height,width,_ = stars.shape
     sun_scaledx, sun_scaledy = width/2,height/2 # setting sun's initial position at centre of image
