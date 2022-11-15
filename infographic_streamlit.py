@@ -119,7 +119,7 @@ def main():
     fig,ax = plt.subplots()
     #fig = plt.figure(figsize = (8,5), dpi = 100)
     plt.imshow(stars) # plot image
-    fig.dpi = 500
+    fig.dpi = 200
     ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
     imagebox_sun = OffsetImage(Sun_img, zoom = 0.075)
     ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
