@@ -122,6 +122,8 @@ def main():
     #iterating through each day to update paths
     for day in range(int(Days)): # get complete array of positions of objects over x days 
       if sun.No_danger == True:
+        sun.danger_zone(Earth)
+        sun.danger_zone(asteroid)
         Earth.update_path(sun)
         asteroid.update_path(sun)
       else:
