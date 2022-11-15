@@ -99,7 +99,7 @@ def main():
     sun = Body(6.96e8,mass_body,0,0)
     
     stars = mpimg.imread("stars.jpg") # importing image for background
-    Sun_img = mpimg.read("Sun.png")
+    Sun_img = mpimg.imread("Sun.png")
     Earth_img = mpimg.imread("Earth.png")
     Asteroid_img = mpimg.imread("meteor2.png")
     height,width,_ = stars.shape
