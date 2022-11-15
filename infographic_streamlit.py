@@ -99,6 +99,9 @@ def main():
     sun = Body(6.96e8,mass_body,0,0)
     
     stars = mpimg.imread("stars.jpg") # importing image for background
+    Sun_img = mpimg.read("Sun.png")
+    Earth_img = mpimg.imread("Earth.png")
+    Asteroid_img = mpimg.imread("meteor2.png")
     height,width,_ = stars.shape
     sun_scaledx, sun_scaledy = width/2,height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-3,3] # -3 to 3 AU limits
@@ -116,13 +119,22 @@ def main():
     fig,ax = plt.subplots()
     #fig = plt.figure(figsize = (8,5), dpi = 100)
     plt.imshow(stars) # plot image
-    plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
-    plt.scatter(earth_x,earth_y, color = 'b', s = 5) # plot Earth
-#     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
-#     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xybox = (0,0), boxcoords = 'offset points')
-#     ax.add_artist(ab_earthimg)
     
-    plt.scatter(asteroid_x,asteroid_y, color = 'r', s = 5) # plot asteroid
+    ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
+    imagebox_sun = OffsetImage(Sun_img, zoom = 0.075)
+    ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
+    ax.add_artist(ab_sunimg)
+    
+    ax.scatter(earth_x,earth_y, color = 'b', s = 5) # plot Earth
+    imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
+    ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xybox = (0,0), boxcoords = 'offset points')
+    ax.add_artist(ab_earthimg)
+    
+    ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 5) # plot asteroid
+    imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
+    ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xybox = (0,0), boxcoords = 'offset points')
+    ax.add_artist(ab_asteroidimg)
+    
     plt.xlim(xlim)
     plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
