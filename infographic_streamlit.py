@@ -14,6 +14,9 @@ st.title("Simulation of gravity between bodies")
 class Body:
       G = 6.67428e-11 #gravitational constant
       solar_mass = 1.98892e30 # mass of sun in kg
+      No_danger = True # The object starts off outside of the body, if inside then this is false
+      danger_bound = 29920000000.0 # 1/5 of AU to sun as boundary 
+      
       def __init__(self,radius,mass,centre_x,centre_y):
          
           self.radius = radius
@@ -28,6 +31,12 @@ class Body:
       def gravity(self):          
           return (self.G*self.mass)/(self.radius**2)  # g = GM/r^2
       
+      def danger_zone(self,obj):
+          if abs(obj.x) <=  self.danger_bound and abs(obj.y) <= self.danger_bound:
+              self.No_danger = False
+          else:
+              self.No_danger = True
+              
         
 class Object:
     AU = 149.6e9 # Astronomical units in metres
@@ -112,8 +121,11 @@ def main():
     
     #iterating through each day to update paths
     for day in range(int(Days)): # get complete array of positions of objects over x days 
+      if sun.No_danger == True:
         Earth.update_path(sun)
         asteroid.update_path(sun)
+      else:
+        break
     
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
