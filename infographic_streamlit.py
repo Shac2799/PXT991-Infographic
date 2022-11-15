@@ -134,6 +134,7 @@ def main():
     imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
     ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xybox = (0,0), boxcoords = 'offset points')
     ax.add_artist(ab_asteroidimg)
+    ax.dpi = 200
     
     plt.xlim(xlim)
     plt.ylim(ylim)
