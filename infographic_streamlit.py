@@ -14,7 +14,6 @@ st.title("Simulation of gravity between bodies")
 class Body:
       G = 6.67428e-11 #gravitational constant
       solar_mass = 1.98892e30 # mass of sun in kg
-      No_danger = True # The object starts off outside of the body, if inside then this is false
       danger_bound = 29920000000.0 # 1/5 of AU to sun as boundary 
       
       def __init__(self,radius,mass,centre_x,centre_y):
@@ -31,16 +30,12 @@ class Body:
       def gravity(self):          
           return (self.G*self.mass)/(self.radius**2)  # g = GM/r^2
       
-      def danger_zone(self,obj):
-          if abs(obj.x) <=  self.danger_bound and abs(obj.y) <= self.danger_bound:
-              self.No_danger = False
-          else:
-              self.No_danger = True
-              
         
 class Object:
     AU = 149.6e9 # Astronomical units in metres
     time_interval = 86400 # number of seconds in a year
+    No_danger = True # The object starts off outside of the body, if inside then this is false
+    
     def __init__(self,x,y,velocity,mass,num_days):
         
         self.x = x*self.AU # converting from AU to m
@@ -55,6 +50,13 @@ class Object:
         self.y_vel = self.velocity # initialise y vel
         self.L = []
         self.KE,self.PE = [], []
+        
+    def danger_zone(self,body):
+          if abs(self.x) <=  body.danger_bound and abs(self.y) <= body.danger_bound:
+              self.No_danger = False
+          else:
+              self.No_danger = True
+              
         
     def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
         pos_x = body.centre_x - self.x # coords of object relative to star/body
@@ -121,11 +123,14 @@ def main():
     
     #iterating through each day to update paths
     for day in range(int(Days)): # get complete array of positions of objects over x days 
-      if sun.No_danger == True:
-        sun.danger_zone(Earth)
-        sun.danger_zone(asteroid)
-        Earth.update_path(sun)
+      Earth.danger_zone(sun)
+      asteroid.danger_zone(sun)
+      if asteroid.No_danger == True:
         asteroid.update_path(sun)
+      else:
+        break
+      if Earth.No_danger == True:
+        Earth.update_path(sun)
       else:
         break
     
