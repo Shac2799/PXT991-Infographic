@@ -88,54 +88,66 @@ class Object:
       
     
 def main():
-  
+    # choose steps/values for sliders
     mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0) 
     init_vel1 = st.slider("Asteroid orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
     init_vel2 = st.slider("Earth orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
     Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     
+    #initiate instances of each object/body
     Earth = Object(-1,0,init_vel2,5.97e24,Days) 
     asteroid = Object(2,0,init_vel1,2.2e14,Days)
     sun = Body(6.96e8,mass_body,0,0)
     
-    stars = mpimg.imread("stars.jpg") # importing images
+    #import all images for plot
+    stars = mpimg.imread("stars.jpg") 
     Sun_img = mpimg.imread("Sun.png")
     Earth_img = mpimg.imread("Earth2.png")
     Asteroid_img = mpimg.imread("meteor2.png")
-    height,width,_ = stars.shape
+    height,width,_ = stars.shape # dimensions of background image
+    
+    #re-scaling central body's position
     sun_scaledx, sun_scaledy = width/2,height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-3,3] # -3 to 3 AU limits
     
+    #iterating through each day to update paths
     for day in range(int(Days)): # get complete array of positions of objects over x days 
         Earth.update_path(sun)
         asteroid.update_path(sun)
     
+    #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
+    
+    #defining parameters to change axes limits to AU
     oldx = np.linspace(0,width,7)
     oldy = np.linspace(0,height,7)
     AU = [-3,-2,-1,0,1,2,3]          
     
+    #creating figure for plot
     fig,ax = plt.subplots()
-    #fig = plt.figure(figsize = (8,5), dpi = 100)
-    plt.imshow(stars) # plot image
-    #fig.dpi = 200
+    plt.imshow(stars) # plot background image
+    
+    #plotting sun 
     ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
     imagebox_sun = OffsetImage(Sun_img, zoom = 0.06)
     ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
     ax.add_artist(ab_sunimg)
     
+    #plotting earth
     ax.scatter(earth_x,earth_y, color = 'b', s = 5) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
     ax.add_artist(ab_earthimg)
     
+    
+    #plotting asteroid
     ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 5) # plot asteroid
     imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
     ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
     ax.add_artist(ab_asteroidimg)
 
-    
+    # changing limits/labels for axes
     plt.xlim(xlim)
     plt.ylim(ylim)
     plt.xlabel("Distance [AU]")
