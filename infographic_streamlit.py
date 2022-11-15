@@ -135,7 +135,7 @@ def main():
         if Earth.No_danger == True:
           Earth.update_path(sun)
         else:
-          st.write("The Earth got too close to the sun!")
+          st.markdown("**The Earth got too close to the sun!**")
           break
 
     #re-scaling to image dimensions
