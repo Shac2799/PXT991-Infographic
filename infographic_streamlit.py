@@ -98,9 +98,8 @@ def main():
     asteroid = Object(2,0,init_vel1,2.2e14,Days)
     sun = Body(6.96e8,mass_body,0,0)
     
-    stars = mpimg.imread("stars.jpg") # importing image for background
+    stars = mpimg.imread("stars.jpg") # importing images
     Sun_img = mpimg.imread("Sun.png")
-    Sun_img.dpi = 200
     Earth_img = mpimg.imread("Earth.png")
     Asteroid_img = mpimg.imread("meteor2.png")
     height,width,_ = stars.shape
