@@ -5,6 +5,7 @@ import matplotlib.image as mpimg
 import math
 import pandas as pd
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import time
 
 st.set_page_config(page_title="Gravity Simulation", page_icon=None, 
                    layout="wide", initial_sidebar_state="auto", menu_items=None) 
@@ -127,6 +128,7 @@ def main():
         if asteroid.No_danger == True:
           asteroid.update_path(sun)
         else:
+          time.sleep(2)
           st.write("The asteroid got too close to the sun!")
           break
           
