@@ -156,7 +156,7 @@ def main():
         #plotting asteroid
     choice = st.radio("", ("Add asteroid"))
 
-    if choice = "Add asteroid":
+    if choice == "Add asteroid":
       ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 0.1) # plot asteroid
       imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
       ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
