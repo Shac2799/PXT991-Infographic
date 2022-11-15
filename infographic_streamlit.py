@@ -123,19 +123,20 @@ def main():
     
     #iterating through each day to update paths
     for day in range(int(Days)): # get complete array of positions of objects over x days 
-        asteroid.danger_zone(sun)
+        asteroid.danger_zone(sun) # checking if both objects are outside danger zone of sun 
         if asteroid.No_danger == True:
           asteroid.update_path(sun)
         else:
           break
-        
+          
+          
     for day in range(int(Days)):
         Earth.danger_zone(sun)
         if Earth.No_danger == True:
           Earth.update_path(sun)
         else:
           break
-    
+          print("You got too close to the sun!")
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
