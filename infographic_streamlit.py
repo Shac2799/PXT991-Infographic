@@ -5,6 +5,7 @@ import matplotlib.image as mpimg
 import math
 import pandas as pd
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import time
 
 st.set_page_config(page_title="Gravity Simulation", page_icon=None, 
                    layout="wide", initial_sidebar_state="auto", menu_items=None) 
@@ -103,7 +104,20 @@ def main():
     mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0) 
     init_vel1 = st.slider("Asteroid orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
     init_vel2 = st.slider("Earth orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
-    Days = st.slider("Duration [Days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
+
+    days_slider = st.empty()
+    current_day = st.empty()
+
+    value = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
+    current_day.info(value)
+
+    if st.button('animate'):
+        for x in range(20):
+            time.sleep(.5)
+
+            value = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = value + 1,value = 0.0)
+            current_day.info(value)
+    #Days = st.slider("Duration [days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     
     #initiate instances of each object/body
     Earth = Object(-1,0,init_vel2,5.97e24,Days) 
