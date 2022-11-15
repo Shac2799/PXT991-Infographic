@@ -154,14 +154,14 @@ def main():
     plt.imshow(stars) # plot background image
     
         #plotting asteroid
-    st.session_state.added = []
-    if "add_asteroid" not in st.session_state.added:
-      if st.button("Add an asteroid",key = "add_asteroid"):
+    pressed == False
+    if pressed == False:
+      if st.button("Add an asteroid"):
         ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 0.1) # plot asteroid
         imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
         ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
         ax.add_artist(ab_asteroidimg)
-        st.session_state.added.append("add_asteroid")
+        pressed == True
 
     #plotting earth
     ax.scatter(earth_x,earth_y, color = 'b', s = 0.1) # plot Earth
