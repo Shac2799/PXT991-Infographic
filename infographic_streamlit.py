@@ -164,10 +164,10 @@ def main():
       ax.add_artist(ab_asteroidimg)
 
     #plotting earth
-    px.scatter(earth_x,earth_y, color = 'b', size = 0.3) # plot Earth
+    ax.scatter(earth_x,earth_y, color = 'b', size = 0.3) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
-    px.add_artist(ab_earthimg)
+    ax.add_artist(ab_earthimg)
     
 #     animation_frame = "Days"
 #     animation_group = "position"
