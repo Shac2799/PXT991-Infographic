@@ -108,14 +108,14 @@ def main():
     days_slider = st.empty()
     current_day = st.empty()
 
-    Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
+    Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 100.0)
     current_day.info(Days)
 
     if st.button('animate'):
         for x in range(20):
             time.sleep(.5)
 
-            Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = Days + 1,value = 5000.0)
+            Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = Days + 1,value = 0.0)
             current_day.info(Days)
     #Days = st.slider("Duration [days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     
