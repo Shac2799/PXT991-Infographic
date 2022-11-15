@@ -155,7 +155,7 @@ def main():
     
         #plotting asteroid
     pressed = st.empty()
-    if len(pressed) < 1:
+    if "added" not in pressed:
       if st.button("Add an asteroid"):
         ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 0.1) # plot asteroid
         imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
