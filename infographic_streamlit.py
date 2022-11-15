@@ -6,6 +6,7 @@ import math
 import pandas as pd
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import time
+import plotly.express as px
 
 st.set_page_config(page_title="Gravity Simulation", page_icon=None, 
                    layout="wide", initial_sidebar_state="auto", menu_items=None) 
@@ -153,9 +154,9 @@ def main():
     fig,ax = plt.subplots()
     plt.imshow(stars) # plot background image
     
-        #plotting asteroid
+    # if user wants to display asteroid they can select the option
     choice = st.radio("Select an option", ("Add asteroid","Remove asteroid"))
-
+    #plotting asteroid
     if choice == "Add asteroid":
       ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 0.3) # plot asteroid
       imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
@@ -163,11 +164,15 @@ def main():
       ax.add_artist(ab_asteroidimg)
 
     #plotting earth
-    ax.scatter(earth_x,earth_y, color = 'b', s = 0.3) # plot Earth
+    px.scatter(earth_x,earth_y, color = 'b', s = 0.3) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
-    ax.add_artist(ab_earthimg)
-
+    px.add_artist(ab_earthimg)
+    
+#     animation_frame = "Days"
+#     animation_group = "position"
+    
+    
     #plotting sun 
     ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun position
     imagebox_sun = OffsetImage(Sun_img, zoom = 0.07)
