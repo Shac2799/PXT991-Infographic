@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import math
 import pandas as pd
-from matplotlib.image import BboxImage
-from matplotlib.transforms import Bbox, TransformedBbox
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 
 st.set_page_config(page_title="Gravity Simulation", page_icon=None, 
                    layout="wide", initial_sidebar_state="auto", menu_items=None) 
@@ -113,11 +112,16 @@ def main():
     oldx = np.linspace(0,width,7)
     oldy = np.linspace(0,height,7)
     AU = [-3,-2,-1,0,1,2,3]          
-        
-    fig = plt.figure(figsize = (8,5), dpi = 100)
+    
+    fig,ax = plt.subplots()
+    #fig = plt.figure(figsize = (8,5), dpi = 100)
     plt.imshow(stars) # plot image
     plt.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
     plt.scatter(earth_x,earth_y, color = 'b', s = 5) # plot Earth
+#     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
+#     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xybox = (0,0), boxcoords = 'offset points')
+#     ax.add_artist(ab_earthimg)
+    
     plt.scatter(asteroid_x,asteroid_y, color = 'r', s = 5) # plot asteroid
     plt.xlim(xlim)
     plt.ylim(ylim)
