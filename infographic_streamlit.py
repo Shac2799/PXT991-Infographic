@@ -151,7 +151,7 @@ def main():
     plt.imshow(stars) # plot background image
     
     #plotting earth
-    ax.scatter(earth_x,earth_y, color = 'b', s = 1) # plot Earth
+    ax.scatter(earth_x,earth_y, color = 'b', s = 0.1) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
     ax.add_artist(ab_earthimg)
@@ -165,7 +165,7 @@ def main():
     
         
     #plotting sun 
-    ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun positio
+    ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun position
     imagebox_sun = OffsetImage(Sun_img, zoom = 0.07)
     ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
     ax.add_artist(ab_sunimg)
