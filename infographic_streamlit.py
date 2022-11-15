@@ -136,7 +136,7 @@ def main():
           Earth.update_path(sun)
         else:
           break
-          print("You got too close to the sun!")
+          st.write("You got too close to the sun!")
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
