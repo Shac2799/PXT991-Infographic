@@ -111,14 +111,13 @@ def main():
     Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     current_day.info(Days)
 
-    if st.button('animate'):
-        for x in range(20):
+    if st.button('Animate orbit'):
+        for day in range(5000):
+            Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 1,value = day)
+            current_day.info(Days)
             time.sleep(.5)
 
-            Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 1,value = 0.0)
-            current_day.info(Days)
-    #Days = st.slider("Duration [days]", min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
-    
+         
     #initiate instances of each object/body
     Earth = Object(-1,0,init_vel2,5.97e24,Days) 
     asteroid = Object(2,0,init_vel1,2.2e14,Days)
