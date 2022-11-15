@@ -166,7 +166,7 @@ def main():
         
     #plotting sun 
     ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun positio
-    imagebox_sun = OffsetImage(Sun_img, zoom = 0.06)
+    imagebox_sun = OffsetImage(Sun_img, zoom = 0.07)
     ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
     ax.add_artist(ab_sunimg)
 
