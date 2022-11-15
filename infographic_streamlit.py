@@ -106,7 +106,7 @@ def main():
     init_vel1 = st.slider("Asteroid orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
     init_vel2 = st.slider("Earth orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
 
-    Days = st.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 5000.0)
+    Days = st.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
 
          
     #initiate instances of each object/body
@@ -166,7 +166,7 @@ def main():
     #plotting earth
     days_all = np.arange(0,5001,5)
     # Plots the Earth png in most recent position
-    paths_df = pd.DataFrame({'x-coords':earth_x,'y-coords':earth_y,'day':days_all})
+    paths_df = pd.DataFrame({'x-coords':earth_x,'y-coords':earth_y,'day':Days})
     px.scatter(paths_df,x = 'x-coords',y = 'y-coords', animation_frame='day',animation_group='x-coords')
     
     ax.scatter(earth_x,earth_y, color = 'b', s = 0.3) # plot Earth
