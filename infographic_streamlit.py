@@ -105,17 +105,7 @@ def main():
     init_vel1 = st.slider("Asteroid orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
     init_vel2 = st.slider("Earth orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
 
-    days_slider = st.empty()
-    current_day = st.empty()
-
     Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
-    current_day.info(Days)
-
-    if st.button('Animate orbit'):
-        for day in range(5000):
-            Days = days_slider.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 1,value = day)
-            current_day.info(Days)
-            time.sleep(.5)
 
          
     #initiate instances of each object/body
@@ -169,7 +159,7 @@ def main():
     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
     ax.add_artist(ab_earthimg)
     
-    
+
     #plotting asteroid
     ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 0.1) # plot asteroid
     imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
