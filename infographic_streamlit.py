@@ -154,25 +154,26 @@ def main():
     plt.imshow(stars) # plot background image
     
         #plotting asteroid
-    if st.button("Add another object"):
+    if st.button("Add an asteroid"):
       ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 0.1) # plot asteroid
       imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
       ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
       ax.add_artist(ab_asteroidimg)
-    
-    else:
-      #plotting earth
-      ax.scatter(earth_x,earth_y, color = 'b', s = 0.1) # plot Earth
-      imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
-      ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
-      ax.add_artist(ab_earthimg)
+      
+    #plotting earth
+    ax.scatter(earth_x,earth_y, color = 'b', s = 0.1) # plot Earth
+    imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
+    ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
+    ax.add_artist(ab_earthimg)
 
-      #plotting sun 
-      ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun position
-      imagebox_sun = OffsetImage(Sun_img, zoom = 0.07)
-      ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
-      ax.add_artist(ab_sunimg)
+    #plotting sun 
+    ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun position
+    imagebox_sun = OffsetImage(Sun_img, zoom = 0.07)
+    ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
+    ax.add_artist(ab_sunimg)
 
+      
+      
     # changing limits/labels for axes
     plt.xlim(xlim)
     plt.ylim(ylim)
