@@ -129,7 +129,7 @@ def main():
         else:
           break
         
-     for day in range(int(Days)):
+    for day in range(int(Days)):
         Earth.danger_zone(sun)
         if Earth.No_danger == True:
           Earth.update_path(sun)
