@@ -128,11 +128,11 @@ def main():
       if asteroid.No_danger == True:
         asteroid.update_path(sun)
       else:
-        break
+        pass
       if Earth.No_danger == True:
         Earth.update_path(sun)
       else:
-        break
+        pass
     
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
