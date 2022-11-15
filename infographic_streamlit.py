@@ -127,6 +127,7 @@ def main():
         if asteroid.No_danger == True:
           asteroid.update_path(sun)
         else:
+          st.markdown("**The asteroid got too close to the sun!**")
           break
           
           
