@@ -165,10 +165,10 @@ def main():
 
     #plotting earth
     # Plots the Earth png in most recent positio 
-    paths_df = pd.DataFrame({'x-coords':earth_x,'y-coords':earth_y,'day':Day})
+    paths_df = pd.DataFrame({'x-coords':earth_x,'y-coords':earth_y,'day':Days})
     fig2 = px.scatter(paths_df,x = 'x-coords',y = 'y-coords', animation_frame='day',animation_group='x-coords')
-#     fig2.update_layout()
-#     st.write(fig2)
+    fig2.update_layout()
+    st.write(fig2)
     
     ax.scatter(earth_x,earth_y, color = 'b', s = 0.3) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
