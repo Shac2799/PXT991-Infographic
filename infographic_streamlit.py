@@ -154,7 +154,7 @@ def main():
     plt.imshow(stars) # plot background image
     
         #plotting asteroid
-    choice = st.radio("", ("Add asteroid"))
+    choice = st.radio("Select an option", ("Add asteroid","Remove asteroid"))
 
     if choice == "Add asteroid":
       ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 0.1) # plot asteroid
