@@ -164,17 +164,11 @@ def main():
       ax.add_artist(ab_asteroidimg) # adding image of Earth to last coordinate in path
 
     #plotting earth
-    # Plots the Earth png in most recent position
-    paths_df = pd.DataFrame({'x-coords':earth_x,'y-coords':earth_y,'day':Days})
-    px.scatter(paths_df,x = 'x-coords',y = 'y-coords', animation_frame='day',animation_group='day')
-    
+    # Plots the Earth png in most recent positio 
     ax.scatter(earth_x,earth_y, color = 'b', s = 0.3) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
     ax.add_artist(ab_earthimg)
-    
-#     animation_frame = "Days"
-#     animation_group = "position"
     
     
     #plotting sun 
