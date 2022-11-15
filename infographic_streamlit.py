@@ -161,7 +161,7 @@ def main():
         imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
         ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
         ax.add_artist(ab_asteroidimg)
-        st.session_state.added.append(key)
+        st.session_state.added.append("add_asteroid")
 
     #plotting earth
     ax.scatter(earth_x,earth_y, color = 'b', s = 0.1) # plot Earth
