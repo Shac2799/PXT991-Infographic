@@ -117,7 +117,7 @@ def main():
     AU = [-3,-2,-1,0,1,2,3]          
     
     fig,ax = plt.subplots()
-    #fig = plt.figure(figsize = (8,5), dpi = 100)
+    fig = plt.figure(figsize = (8,5), dpi = 100)
     plt.imshow(stars) # plot image
     
     ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 500) # plot sun positio
