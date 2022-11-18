@@ -134,8 +134,8 @@ def main():
     # choose steps/values for sliders
         
     mass_ast = st.number_input("Select the mass of the asteroid (in Earth masses)", step = 0.5, value = 0.5)
-    st.write("The asteroid's mass is ",mass_ast)
     conv_mass = mass_ast*5.97e24
+    st.write("The asteroid's mass is ",conv_mass, " kg")
     
     mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0) 
     init_vel1 = st.slider("Asteroid orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
