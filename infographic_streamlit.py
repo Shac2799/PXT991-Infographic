@@ -122,6 +122,9 @@ def main():
     #init_vel2 = st.slider("Earth orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
 
     Days = st.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
+    
+        # if user wants to display asteroid they can select the option
+    choice = st.radio("Select an option", ("Add asteroid","Remove asteroid"))
     #initiate instances of each object/body
     asteroid = Object(-2,0,init_vel1,conv_mass,Days)
     Earth = Object(-1,0,-30,5.97e24,Days) 
@@ -138,9 +141,10 @@ def main():
     sun_scaledx, sun_scaledy = width/2,height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-3,3] # -3 to 3 AU limits
           
-          
-    objects = [Earth,asteroid]
-    
+    if choice == "Add asteroid":      
+      objects = [Earth,asteroid]
+    else:
+      objects = [Earth]
 
     for day in range(int(Days)*24):
       for obj in objects:
@@ -163,8 +167,6 @@ def main():
     fig,ax = plt.subplots()
     plt.imshow(stars) # plot background image
     
-    # if user wants to display asteroid they can select the option
-    choice = st.radio("Select an option", ("Add asteroid","Remove asteroid"))
     #plotting asteroid
     if choice == "Add asteroid":
       ax.scatter(asteroid_x,asteroid_y, color = 'r', s = 0.3) # plot asteroid
