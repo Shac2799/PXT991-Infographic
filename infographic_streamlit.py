@@ -141,7 +141,7 @@ def main():
          
     #initiate instances of each object/body
     Earth = Object(-1,0,init_vel2,5.97e24,Days) 
-    asteroid = Object(-2,0,init_vel1,2.2e24,Days)
+    asteroid = Object(-2,0,init_vel1,2.2e28,Days)
     sun = Body(6.96e8,mass_body,0,0)
     
     #import all images for plot
