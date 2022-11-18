@@ -113,7 +113,7 @@ class Object:
 def main():
     # choose steps/values for sliders
         
-    mass_ast = st.number_input("Select the mass of the asteroid (in Earth masses)", step = 0.5, value = 1.0, min_value = 1e-30)
+    mass_ast = st.number_input("Select the mass of the asteroid [Earth masses]", step = 0.5, value = 1.0, min_value = 1e-30)
     conv_mass = mass_ast*5.97e24
     st.write("The asteroid's mass is ",conv_mass, " kg")
     
