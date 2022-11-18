@@ -80,20 +80,20 @@ class Object:
         for obj in objects:
             if obj == self:
                 continue
+            
+            obj_posx = obj.x - self.x
+            obj_posy = obj.y - self.y
+            if obj_posx == 0:
+                theta_obj = np.pi/2
             else:
-                obj_posx = obj.x - self.x
-                obj_posy = obj.y - self.y
-                if obj_posx == 0:
-                    theta_obj = np.pi/2
-                else:
-                    theta_obj = math.atan2(obj_posy,obj_posx)
-                        
-                distance_obj = math.sqrt(obj_posx**2 + obj_posy**2)
-                force_obj = (body.G*self.mass*obj.mass)/(distance_obj**2)
-                fy_obj = force_obj*math.sin(theta_obj)
-                fx_obj = force_obj*math.cos(theta_obj)
-                netfy_obj += fy_obj
-                netfx_obj += fx_obj
+                theta_obj = math.atan2(obj_posy,obj_posx)
+
+            distance_obj = math.sqrt(obj_posx**2 + obj_posy**2)
+            force_obj = (body.G*self.mass*obj.mass)/(distance_obj**2)
+            fy_obj = force_obj*math.sin(theta_obj)
+            fx_obj = force_obj*math.cos(theta_obj)
+            netfy_obj += fy_obj
+            netfx_obj += fx_obj
         
         net_forcex = fx_body + netfx_obj
         net_forcey = fy_body + netfy_obj
@@ -106,11 +106,9 @@ class Object:
         
     def update_path(self,body,objects): # F = ma -> a = (v-u)/t -> v = Ft/m + u
         net_fx, net_fy = self.force_of_attract(body, objects)
+        
         self.x_vel += (net_fx/self.mass)*self.time_interval
         self.y_vel += (net_fy/self.mass)*self.time_interval
-#         f_x , f_y = self.force_of_attract(body) 
-#         self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
-#         self.y_vel += (f_y/self.mass)*self.time_interval
         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
         self.y += self.y_vel*self.time_interval
         self.path_x.append(self.x/self.AU) # storing position in array
