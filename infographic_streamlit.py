@@ -132,18 +132,19 @@ class Object:
     
 def main():
     # choose steps/values for sliders
+        
+    mass_ast = st.number_input("Select the mass of the asteroid (in Earth masses)")
+    st.write("The asteroid's mass is ",mass_ast)
+    conv_mass = mass_ast*5.97e24
+    
     mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0) 
     init_vel1 = st.slider("Asteroid orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -10.0)
     init_vel2 = st.slider("Earth orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
 
     Days = st.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
-    
-    mass_ast = st.number_input("Select the mass of the asteroid (in Earth masses)")
-    st.write("The asteroid's mass is ",mass_ast)
-    conv_mass = mass_ast*5.97e24
     #initiate instances of each object/body
-    Earth = Object(-1,0,init_vel2,5.97e24,Days) 
     asteroid = Object(-2,0,init_vel1,conv_mass,Days)
+    Earth = Object(-1,0,init_vel2,5.97e24,Days) 
     sun = Body(6.96e8,mass_body,0,0)
     
     #import all images for plot
