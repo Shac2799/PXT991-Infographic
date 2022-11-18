@@ -141,7 +141,7 @@ def main():
          
     #initiate instances of each object/body
     Earth = Object(-1,0,init_vel2,5.97e24,Days) 
-    asteroid = Object(-2,0,init_vel1,2.2e14,Days)
+    asteroid = Object(-2,0,init_vel1,2.2e24,Days)
     sun = Body(6.96e8,mass_body,0,0)
     
     #import all images for plot
@@ -154,14 +154,6 @@ def main():
     #re-scaling central body's position
     sun_scaledx, sun_scaledy = width/2,height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-3,3] # -3 to 3 AU limits
-    
-#     #iterating through each day to update paths
-#     for day in range(int(Days)): # get complete array of positions of objects over x days 
-#         asteroid.danger_zone(sun) # checking if both objects are outside danger zone of sun 
-#         if asteroid.No_danger == True:
-#           asteroid.update_path(sun)
-#         else:
-#           break
           
           
     objects = [Earth,asteroid]
@@ -173,15 +165,6 @@ def main():
               obj.update_path(sun,objects)
             else:
               break
-
-          
-          
-#     for day in range(int(Days)):
-#         Earth.danger_zone(sun)
-#         if Earth.No_danger == True:
-#           Earth.update_path(sun)
-#         else:
-#           break
 
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
