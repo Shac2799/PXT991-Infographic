@@ -18,12 +18,12 @@ class Body:
       solar_mass = 1.98892e30 # mass of sun in kg
       danger_bound = 29920000000.0 # 1/5 of AU to sun as boundary 
       
-      def __init__(self,radius,mass,centre_x,centre_y):
+      def __init__(self,radius,mass,x,y):
          
           self.radius = radius
           self.mass = mass*self.solar_mass # so user can change weight in solar mass
-          self.centre_x = centre_x   # coords of centre of star/body
-          self.centre_y = centre_y
+          self.x = x   # coords of centre of star/body
+          self.y = y
           
       def density(self):
           volume = (4/3)*np.pi*self.radius**3
@@ -35,8 +35,9 @@ class Body:
         
 class Object:
     AU = 149.6e9 # Astronomical units in metres
-    time_interval = 3600 #86400 # number of seconds in a year
+    time_interval = 3600  # number of seconds in a day
     No_danger = True # The object starts off outside of the body, if inside then this is false
+    G = 6.67428e-11 
     
     def __init__(self,x,y,velocity,mass,num_days):
         
@@ -60,53 +61,34 @@ class Object:
               self.No_danger = True
               
         
-    def force_of_attract(self,body,objects):  # calculates gravitational force of attraction between bodies
-        pos_x = body.centre_x - self.x # coords of object relative to star/body
-        pos_y = body.centre_y - self.y             
+    def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
+        pos_x = body.x - self.x # coords of object relative to star/body
+        pos_y = body.y - self.y             
         if pos_x == 0:
             theta = np.pi/2
         else:
             theta = math.atan2(pos_y,pos_x) # atan2 goes from -pi to pi (atan only pi/2)
         distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
         force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
-        fy_body = force*math.sin(theta)  # force in x and y directions
-        fx_body = force*math.cos(theta)
+        fy = force*math.sin(theta)  # force in x and y directions
+        fx = force*math.cos(theta)
         self.distance = distance_metres
         self.L.append(self.mass*self.y_vel*distance_metres)
         self.KE.append(0.5*self.mass*(self.y_vel**2)) # 1/2mv^2
-        self.PE.append(-force*distance_metres) # -GMm/r
+        self.PE.append(-force*distance_metres) # -GMm/r       
         
-        netfx_obj = netfy_obj = 0
-        for obj in objects:
-            if obj == self:
-                continue
-            
-            obj_posx = obj.x - self.x
-            obj_posy = obj.y - self.y
-            if obj_posx == 0:
-                theta_obj = np.pi/2
-            else:
-                theta_obj = math.atan2(obj_posy,obj_posx)
-
-            distance_obj = math.sqrt(obj_posx**2 + obj_posy**2)
-            force_obj = (body.G*self.mass*obj.mass)/(distance_obj**2)
-            fy_obj = force_obj*math.sin(theta_obj)
-            fx_obj = force_obj*math.cos(theta_obj)
-            netfy_obj += fy_obj
-            netfx_obj += fx_obj
-        
-        net_forcex = fx_body + netfx_obj
-        net_forcey = fy_body + netfy_obj
-        
-        
-        return net_forcex, net_forcey
-        
-        
-        #return force_x,force_y
+        return fx,fy
         
     def update_path(self,body,objects): # F = ma -> a = (v-u)/t -> v = Ft/m + u
-        net_fx, net_fy = self.force_of_attract(body, objects)
+        net_fx, net_fy = self.force_of_attract(body)
         
+        for obj in objects:
+          if self == obj:
+            continue
+          fx,fy = self.force_of_attract(obj)
+          net_fx += fx
+          net_fy += fy
+          
         self.x_vel += (net_fx/self.mass)*self.time_interval
         self.y_vel += (net_fy/self.mass)*self.time_interval
         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
