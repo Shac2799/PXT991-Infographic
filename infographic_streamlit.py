@@ -76,8 +76,8 @@ class Object:
         self.KE.append(0.5*self.mass*(self.y_vel**2)) # 1/2mv^2
         self.PE.append(-force*distance_metres) # -GMm/r
         
+        netfx_obj = netfy_obj = 0
         for obj in objects:
-            netfx_obj = netfy_obj = 0
             if obj == self:
                 continue
             else:
