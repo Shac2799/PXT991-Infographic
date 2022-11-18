@@ -140,7 +140,7 @@ def main():
 
          
     #initiate instances of each object/body
-    Earth = Object(-2,0,init_vel2,5.97e34,Days) 
+    Earth = Object(-2,0,init_vel2,5.97e24,Days) 
     asteroid = Object(2,0,init_vel1,2.2e14,Days)
     sun = Body(6.96e8,mass_body,0,0)
     
