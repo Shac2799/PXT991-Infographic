@@ -162,7 +162,7 @@ def main():
     objects = [Earth,asteroid]
     
     for obj in objects:
-        for day in range(int(Days)):
+        for day in range(int(Days)*24):
             obj.danger_zone(sun)
             if obj.No_danger == True:
               obj.update_path(sun,objects)
