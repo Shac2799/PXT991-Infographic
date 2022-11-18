@@ -141,13 +141,14 @@ def main():
           
     objects = [Earth,asteroid]
     
-    for obj in objects:
-        for day in range(int(Days)*24):
-            obj.danger_zone(sun)
-            if obj.No_danger == True:
-              obj.update_path(sun,objects)
-            else:
-              break
+
+    for day in range(int(Days)*24):
+      for obj in objects:
+          obj.danger_zone(sun)
+          if obj.No_danger == True:
+            obj.update_path(sun,objects)
+          else:
+            break
 
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
