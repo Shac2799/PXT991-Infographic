@@ -60,7 +60,7 @@ class Object:
               self.No_danger = True
               
         
-    def force_of_attract(self,body):  # calculates gravitational force of attraction between bodies
+    def force_of_attract(self,body,objects):  # calculates gravitational force of attraction between bodies
         pos_x = body.centre_x - self.x # coords of object relative to star/body
         pos_y = body.centre_y - self.y             
         if pos_x == 0:
@@ -69,18 +69,49 @@ class Object:
             theta = math.atan2(pos_y,pos_x) # atan2 goes from -pi to pi (atan only pi/2)
         distance_metres = math.sqrt(pos_x**2 + pos_y**2) # distance between body and object
         force = (body.G*self.mass*body.mass)/(distance_metres**2) # total grav force
-        force_y = force*math.sin(theta)  # force in x and y directions
-        force_x = force*math.cos(theta)
+        fy_body = force*math.sin(theta)  # force in x and y directions
+        fx_body = force*math.cos(theta)
         self.distance = distance_metres
         self.L.append(self.mass*self.y_vel*distance_metres)
         self.KE.append(0.5*self.mass*(self.y_vel**2)) # 1/2mv^2
         self.PE.append(-force*distance_metres) # -GMm/r
-        return force_x,force_y
         
-    def update_path(self,body): # F = ma -> a = (v-u)/t -> v = Ft/m + u
-        f_x , f_y = self.force_of_attract(body) 
-        self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
-        self.y_vel += (f_y/self.mass)*self.time_interval
+        for obj in objects:
+            netfx_obj = netfy_obj = 0
+            if obj == self:
+                continue
+            else:
+                obj_posx = obj.x - self.x
+                obj_posy = obj.y - self.y
+                if obj_posx == 0:
+                    theta_obj = np.pi/2
+                    
+                else:
+                    theta_obj = math.atan2(obj_posx,obj_posy)
+                        
+                distance_obj = math.sqrt(obj_posx**2 + obj_posy**2)
+                force_obj = (body.G*self.mass*obj.mass)/(distance_obj**2)
+                fy_obj = force_obj*math.sin(theta_obj)
+                fx_obj = force_obj*math.cos(theta_obj)
+                netfy_obj += fy_obj
+                netfx_obj += fx_obj
+        
+        net_forcex = fx_body + netfx_obj
+        net_forcey = fy_body + netfy_obj
+        
+        
+        return net_forcex, net_forcey
+        
+        
+        #return force_x,force_y
+        
+    def update_path(self,body,objects): # F = ma -> a = (v-u)/t -> v = Ft/m + u
+        net_fx, net_fy = self.force_of_attract(body, objects)
+        self.x_vel += (net_fx/self.mass)*self.time_interval
+        self.y_vel += (net_fy/self.mass)*self.time_interval
+#         f_x , f_y = self.force_of_attract(body) 
+#         self.x_vel += (f_x/self.mass)*self.time_interval # increment of velocities due to changes in force
+#         self.y_vel += (f_y/self.mass)*self.time_interval
         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
         self.y += self.y_vel*self.time_interval
         self.path_x.append(self.x/self.AU) # storing position in array
@@ -125,21 +156,33 @@ def main():
     sun_scaledx, sun_scaledy = width/2,height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-3,3] # -3 to 3 AU limits
     
-    #iterating through each day to update paths
-    for day in range(int(Days)): # get complete array of positions of objects over x days 
-        asteroid.danger_zone(sun) # checking if both objects are outside danger zone of sun 
-        if asteroid.No_danger == True:
-          asteroid.update_path(sun)
-        else:
-          break
+#     #iterating through each day to update paths
+#     for day in range(int(Days)): # get complete array of positions of objects over x days 
+#         asteroid.danger_zone(sun) # checking if both objects are outside danger zone of sun 
+#         if asteroid.No_danger == True:
+#           asteroid.update_path(sun)
+#         else:
+#           break
           
           
-    for day in range(int(Days)):
-        Earth.danger_zone(sun)
-        if Earth.No_danger == True:
-          Earth.update_path(sun)
-        else:
-          break
+    objects = [Earth,asteroid]
+    
+    for obj in objects:
+        for day in range(int(days)):
+            obj.danger_zone(sun)
+            if obj.No_danger == True:
+              obj.update_path(sun,objects)
+            else:
+              break
+
+          
+          
+#     for day in range(int(Days)):
+#         Earth.danger_zone(sun)
+#         if Earth.No_danger == True:
+#           Earth.update_path(sun)
+#         else:
+#           break
 
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
