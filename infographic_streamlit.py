@@ -85,9 +85,8 @@ class Object:
                 obj_posy = obj.y - self.y
                 if obj_posx == 0:
                     theta_obj = np.pi/2
-                    
                 else:
-                    theta_obj = math.atan2(obj_posx,obj_posy)
+                    theta_obj = math.atan2(obj_posy,obj_posx)
                         
                 distance_obj = math.sqrt(obj_posx**2 + obj_posy**2)
                 force_obj = (body.G*self.mass*obj.mass)/(distance_obj**2)
