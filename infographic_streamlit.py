@@ -143,7 +143,7 @@ def main():
 
     Days = st.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     #initiate instances of each object/body
-    asteroid = Object(-2,0.1,init_vel1,conv_mass,Days)
+    asteroid = Object(-2,0.3,init_vel1,conv_mass,Days)
     Earth = Object(-1,0,-30,5.97e24,Days) 
     sun = Body(6.96e8,mass_body,0,0)
     
