@@ -35,7 +35,7 @@ class Body:
         
 class Object:
     AU = 149.6e9 # Astronomical units in metres
-    time_interval = 86400 # number of seconds in a year
+    time_interval = 3600 #86400 # number of seconds in a year
     No_danger = True # The object starts off outside of the body, if inside then this is false
     
     def __init__(self,x,y,velocity,mass,num_days):
