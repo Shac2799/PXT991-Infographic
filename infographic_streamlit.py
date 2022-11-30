@@ -107,7 +107,7 @@ class Object:
         self.i += 1
         # adaptive timestep, halves time interval if difference between consecutive velocites > 1.5v
         if self.i > 1:
-          ratiox, ratioy = (self.xvel_list[i]/self.xvel_list[i-1]), (self.yvel_list[i]/self.yvel_list[i-1])
+          ratiox, ratioy = (self.xvel_list[self.i]/self.xvel_list[self.i-1]), (self.yvel_list[self.i]/self.yvel_list[self.i-1])
           if ratiox or ratioy > self.tolerance:
               self.time_interval = self.time_interval/2
               self.elapsed_time += self.time_interval
@@ -132,7 +132,7 @@ class Object:
         self.x += c4*self.x_vel*self.time_interval # x4
         
         self.path_x.append(self.x/self.AU) # storing position in array
-        self.xvel_list[i] = self.x_vel
+        self.xvel_list[self.i] = self.x_vel
         
         self.y += c1*self.y_vel*self.time_interval #x1
         self.y_vel += d1*(self.cowells(body,objects)[1]/self.mass)*self.time_interval #v1
@@ -143,7 +143,7 @@ class Object:
         self.y += c4*self.y_vel*self.time_interval # x4
         
         self.path_y.append(self.y/self.AU)
-        self.yvel_list[i] = self.y_vel
+        self.yvel_list[self.i] = self.y_vel
 
         # using euler method        
 #         self.x_vel += (net_fx/self.mass)*self.time_interval
