@@ -112,13 +112,13 @@ class Object:
         
         #intemediary steps between each time interval
         #coefficients sum to 1 to ensure that total dt = time_interval
-        self.x += c1*self.x_vel*time_interval #x1
+        self.x += c1*self.x_vel*self.time_interval #x1
         self.xvel += d1*(self.cowells(body)/self.mass)*self.time_interval #v1
-        self.x += c2*self.x_vel*time_interval # x2
+        self.x += c2*self.x_vel*self.time_interval # x2
         self.xvel += d2*(self.cowells(body)/self.mass)*self.time_interval #v2
-        self.x += c3*self.x_vel*time_interval # x3      
+        self.x += c3*self.x_vel*self.time_interval # x3      
         self.xvel += d3*(self.cowells(body)/self.mass)*self.time_interval #v3
-        self.x += c4*self.x_vel*time_interval # x4
+        self.x += c4*self.x_vel*self.time_interval # x4
         
         self.path_x.append(self.x/self.AU) # storing position in array
         self.path_y.append(self.y/self.AU)
