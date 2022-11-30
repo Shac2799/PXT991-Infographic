@@ -102,7 +102,6 @@ class Object:
             
     def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
         #height,width,_ = image.shape # dimensions of image
-        height = 10
         image_xlim = image_ylim = [0,height]
         #image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
         new_centrex = new_centrey = height/2 # coords for centre of image
@@ -142,7 +141,6 @@ def main():
     
 
     height,width,_ = stars.shape # dimensions of background image
-    height = 10
     #re-scaling central body's position
     sun_scaledx = sun_scaledy = height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-4,4] # -4 to 4 AU limits
