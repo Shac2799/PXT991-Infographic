@@ -163,7 +163,7 @@ def main():
     #defining parameters to change axes limits to AU
     AU = np.arange(x_lim[0],x_lim[1]+1,1)
     #AU = [-4,-3,-2,-1,0,1,2,3,4]   
-    oldx = oldy = np.linspace(0,height,len(AU))
+    oldx = oldy = np.linspace(0,crop,len(AU))
     
     #creating figure for plot
     fig,ax = plt.subplots()
