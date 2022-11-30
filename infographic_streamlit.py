@@ -106,13 +106,13 @@ class Object:
         
         self.i += 1
         # adaptive timestep, halves time interval if difference between consecutive velocites > 1.5v
-#         if self.i > 1:
-#           ratiox, ratioy = (self.xvel_list[self.i]/self.xvel_list[self.i-1]), (self.yvel_list[self.i]/self.yvel_list[self.i-1])
-#           if ratiox or ratioy > self.tolerance:
-#               self.time_interval = self.time_interval/2
-#               self.elapsed_time += self.time_interval
-#           else:      
-#               self.elapsed_time += self.time_interval
+        if self.i > 1:
+          ratiox, ratioy = (self.xvel_list[self.i]/self.xvel_list[self.i-1]), (self.yvel_list[self.i]/self.yvel_list[self.i-1])
+          if ratiox or ratioy > self.tolerance:
+              self.time_interval = self.time_interval/2
+              self.elapsed_time += self.time_interval
+          else:      
+              self.elapsed_time += self.time_interval
    
         #using fourth order yoshida leapfrog integrator
         w0, w1 = -(np.cbrt(2)/(2-np.cbrt(2))), (1/(2-np.cbrt(2)))
