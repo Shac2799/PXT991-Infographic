@@ -180,7 +180,7 @@ def main():
     sun = Body(6.96e8,mass_body,0,0)
     
     #import all images for plot
-    stars = mpimg.imread("stars3.jpg") 
+    stars = mpimg.imread("stars2.jpg") 
     Sun_img = mpimg.imread("Sun.png")
     Earth_img = mpimg.imread("Earth2.png")
     Asteroid_img = mpimg.imread("meteor2.png")
@@ -219,7 +219,7 @@ def main():
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
     stars_cropped = stars[0:height,0:height,:] 
-    plt.imshow(stars)
+    plt.imshow(stars_cropped)
     #plotting asteroid
     if choice == "Add asteroid":
       ax.plot(asteroid_x,asteroid_y, color = 'r',linewidth=0.5) # plot asteroid
