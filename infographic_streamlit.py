@@ -16,7 +16,7 @@ st.title("Simulation of gravity between bodies")
 class Body:
       G = 6.67428e-11 #gravitational constant
       solar_mass = 1.98892e30 # mass of sun in kg
-      danger_bound = 29920000000.0 # 1/5 of AU to sun as boundary 
+      danger_bound = 0.3*149.6e9 # 1/5 of AU to sun as boundary 
       
       def __init__(self,radius,mass,x,y):
          
