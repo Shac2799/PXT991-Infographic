@@ -101,7 +101,8 @@ class Object:
         self.path_y.append(self.y/self.AU)
             
     def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
-        height,width,_ = image.shape # dimensions of image
+        #height,width,_ = image.shape # dimensions of image
+        height = 300
         image_xlim = image_ylim = [0,height]
         #image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
         new_centrex = new_centrey = height/2 # coords for centre of image
