@@ -140,7 +140,7 @@ def main():
     
     #re-scaling central body's position
     sun_scaledx, sun_scaledy = height/2,height/2 # setting sun's initial position at centre of image
-    x_lim = y_lim = [-3,3] # -3 to 3 AU limits
+    x_lim = y_lim = [-4,4] # -3 to 3 AU limits
           
     if choice == "Add asteroid":      
       objects = [Earth,asteroid]
