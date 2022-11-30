@@ -135,7 +135,12 @@ def main():
     Sun_img = mpimg.imread("Sun.png")
     Earth_img = mpimg.imread("Earth2.png")
     Asteroid_img = mpimg.imread("meteor2.png")
+    
+    #to scale image down in size
+    scale = 0.5
+    
     height,width,_ = stars.shape # dimensions of background image
+    height = scale*height
     #re-scaling central body's position
     sun_scaledx = sun_scaledy = height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-4,4] # -4 to 4 AU limits
@@ -163,7 +168,7 @@ def main():
     oldx = oldy = np.linspace(0,height,len(AU))
     
     #creating figure for plot
-    fig,ax = plt.subplots(figsize=(1,1),dpi =1000)
+    fig,ax = plt.subplots(figsize=(1,1))
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
     stars_cropped = stars[0:height,0:height,:] 
