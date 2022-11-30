@@ -141,6 +141,7 @@ def main():
     
 
     height,width,_ = stars.shape # dimensions of background image
+    height = 300
     #re-scaling central body's position
     sun_scaledx = sun_scaledy = height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-4,4] # -4 to 4 AU limits
