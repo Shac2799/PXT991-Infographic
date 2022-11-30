@@ -232,7 +232,7 @@ def main():
     #plotting asteroid
     if choice == "Add asteroid":
       ax.plot(asteroid_x,asteroid_y, color = 'r',linewidth=0.5) # plot asteroid
-      imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
+      imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.01)
       ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
       ax.add_artist(ab_asteroidimg) # adding image of Earth to last coordinate in path
 
@@ -253,7 +253,7 @@ def main():
     
     #plotting sun 
     ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun position
-    imagebox_sun = OffsetImage(Sun_img, zoom = 0.07)
+    imagebox_sun = OffsetImage(Sun_img, zoom = 0.06)
     ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
     ax.add_artist(ab_sunimg)    
       
