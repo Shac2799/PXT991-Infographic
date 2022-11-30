@@ -108,9 +108,9 @@ class Object:
         if self.i > 1:
           ratiox, ratioy = (self.xvel_list[self.i]/self.xvel_list[self.i-1]), (self.yvel_list[self.i]/self.yvel_list[self.i-1])
           if ratiox or ratioy > 1.25:
-              self.time_interval = self.time_interval/1.25
+              self.time_interval = self.time_interval/2
           elif ratiox or ratioy <= 1.25: 
-              self.time_interval = 1.25*self.time_interval
+              self.time_interval = 1.1*self.time_interval
                 
         self.elapsed_time += self.time_interval
    
