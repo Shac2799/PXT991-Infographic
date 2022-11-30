@@ -152,7 +152,7 @@ def main():
           if obj.No_danger == True:
             obj.update_path(sun,objects)
           else:
-            break
+            continue
 
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
