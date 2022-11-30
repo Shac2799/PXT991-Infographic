@@ -166,6 +166,7 @@ def main():
     
     #creating figure for plot
     fig,ax = plt.subplots()
+    ax.set_aspect('equal')
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
     stars_cropped = stars[0:height,0:height,:] 
@@ -206,7 +207,6 @@ def main():
     plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
-    ax.set_aspect('equal')
     plt.show()
 #    energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
 #    st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
