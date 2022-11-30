@@ -137,10 +137,10 @@ def main():
     Asteroid_img = mpimg.imread("meteor2.png")
     
     #to scale image down in size
-    scale = 0.5
-    
+    img_scale = 0.5
+    scale = 0.1
     height,width,_ = stars.shape # dimensions of background image
-    height = int(scale*height)
+    height = int(img_scale*height)
     #re-scaling central body's position
     sun_scaledx = sun_scaledy = height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-4,4] # -4 to 4 AU limits
