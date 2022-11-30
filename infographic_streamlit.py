@@ -235,7 +235,7 @@ def main():
       imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.01)
       ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
       ax.add_artist(ab_asteroidimg) # adding image of Earth to last coordinate in path
-
+    st.write(len(asteroid_x))
     #plotting earth
     # Plots the Earth png in most recent positio 
 #     paths_df = pd.DataFrame({'x-coords':earth_x,'y-coords':earth_y,'day':Days})
