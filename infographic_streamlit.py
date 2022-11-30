@@ -51,7 +51,6 @@ class Object:
         self.path_y = [self.y/self.AU]
         self.x_vel = 0 #initialise x vel 
         self.y_vel = velocity*1000 # initial velocity in m/s
-        self.tolerance = 1.5 # for adaptive timestep
         self.yvel_list = self.xvel_list = np.zeros(int(num_days)+1) # starts at 0 days so need +1
         self.yvel_list[0], self.xvel_list[0] = self.y_vel, self.x_vel
         self.i = 0 # index for velocity lists
@@ -105,14 +104,15 @@ class Object:
 #           net_fy += fy
         
         self.i += 1
-        # adaptive timestep, halves time interval if difference between consecutive velocites > 1.5v
+        # adaptive timestep, halves time interval if difference between consecutive velocites > 1.25v or x1.25 if <1.25v
         if self.i > 1:
           ratiox, ratioy = (self.xvel_list[self.i]/self.xvel_list[self.i-1]), (self.yvel_list[self.i]/self.yvel_list[self.i-1])
-          if ratiox or ratioy > self.tolerance:
-              self.time_interval = self.time_interval/2
-              self.elapsed_time += self.time_interval
-          else:      
-              self.elapsed_time += self.time_interval
+          if ratiox or ratioy > 1.25:
+              self.time_interval = self.time_interval/1.25
+          elif ratiox or ratioy <= 1.25: 
+              self.time_interval = 1.25*self.time_interval
+                
+        self.elapsed_time += self.time_interval
    
         #using fourth order yoshida leapfrog integrator
         w0, w1 = -(np.cbrt(2)/(2-np.cbrt(2))), (1/(2-np.cbrt(2)))
@@ -212,7 +212,7 @@ def main():
             obj.update_path(sun,objects)
           else:
             continue
-
+    st.write(Earth.elapsed_time)
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
