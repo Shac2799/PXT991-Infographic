@@ -140,7 +140,7 @@ def main():
     height,width,_ = stars.shape # dimensions of background image
     
     #re-scaling central body's position
-    sun_scaledx, sun_scaledy = height/2,height/2 # setting sun's initial position at centre of image
+    sun_scaledx = sun_scaledy = crop/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-4,4] # -4 to 4 AU limits
           
     if choice == "Add asteroid":      
@@ -157,8 +157,8 @@ def main():
             continue
 
     #re-scaling to image dimensions
-    earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
-    asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
+    earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim,crop) 
+    asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim,crop) 
     
     #defining parameters to change axes limits to AU
     AU = np.arange(x_lim[0],x_lim[1]+1,1)
