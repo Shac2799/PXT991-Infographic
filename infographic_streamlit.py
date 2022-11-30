@@ -227,7 +227,7 @@ def main():
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
     stars_cropped = stars[0:height,0:height,:] 
-    plt.imshow(stars_cropped)
+    plt.imshow(stars_cropped,aspect = 'auto')
     #plotting asteroid
     if choice == "Add asteroid":
       ax.plot(asteroid_x,asteroid_y, color = 'r',linewidth=0.5) # plot asteroid
