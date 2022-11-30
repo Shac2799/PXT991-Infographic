@@ -89,6 +89,7 @@ class Object:
           net_fx += fx
           net_fy += fy
           
+        # using euler method        
         self.x_vel += (net_fx/self.mass)*self.time_interval
         self.y_vel += (net_fy/self.mass)*self.time_interval
         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
@@ -98,16 +99,16 @@ class Object:
             
     def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
         height,width,_ = image.shape # dimensions of image
-        image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
-        new_centrex = width/2 # coords for centre of image
-        new_centrey = height/2    
-        x_scale = width/sum(abs(np.array(x_limit))) # number of pixels within the limits
+        image_xlim, image_ylim = [0,height], [0,height] 
+#         image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
+        #new_centrex = width/2 # coords for centre of image
+        new_centrex = new_centrey = height/2    
+#         x_scale = width/sum(abs(np.array(x_limit))) # number of pixels within the limits
+        x_scale = height/sum(abs(np.array(x_limit)))
         y_scale = height/sum(abs(np.array(y_limit)))
         img_posx = [(posx*x_scale + new_centrex) for posx in self.path_x] # calculating the re-scaled positions relative to image 
         img_posy = [(posy*y_scale + new_centrey) for posy in self.path_y]
         return img_posx, img_posy, image_xlim, image_ylim
-      
-
       
     
 def main():
