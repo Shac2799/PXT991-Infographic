@@ -224,7 +224,7 @@ def main():
     
     #creating figure for plot
     fig,ax = plt.subplots()
-    #ax.set_aspect('equal')
+    ax.set_aspect('equal')
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
     stars_cropped = stars[0:height,0:height,:] 
