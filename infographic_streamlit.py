@@ -146,7 +146,7 @@ def main():
     else:
       objects = [Earth]
 
-    for day in range(int(Days)*24):
+    for day in range(int(Days)): # multiply by 24 if want timestep in hours
       for obj in objects:
           obj.danger_zone(sun)
           if obj.No_danger == True:
