@@ -136,11 +136,8 @@ def main():
     Earth_img = mpimg.imread("Earth2.png")
     Asteroid_img = mpimg.imread("meteor2.png")
     
-    #to scale image down in size
-    img_scale = 0.5
-    scale = 0.1
+
     height,width,_ = stars.shape # dimensions of background image
-    height = int(img_scale*height)
     #re-scaling central body's position
     sun_scaledx = sun_scaledy = height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-4,4] # -4 to 4 AU limits
@@ -176,7 +173,7 @@ def main():
     #plotting asteroid
     if choice == "Add asteroid":
       ax.plot(asteroid_x,asteroid_y, color = 'r') # plot asteroid
-      imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02*scale)
+      imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.02)
       ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
       ax.add_artist(ab_asteroidimg) # adding image of Earth to last coordinate in path
 
@@ -191,13 +188,13 @@ def main():
 #     ax.add_artist(ab_earthimg)
     
     ax.plot(earth_x,earth_y, color = 'b') # plot Earth
-    imagebox_earth = OffsetImage(Earth_img, zoom = 0.02*scale)
+    imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
     ax.add_artist(ab_earthimg)
     
     #plotting sun 
     ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun position
-    imagebox_sun = OffsetImage(Sun_img, zoom = 0.07*scale)
+    imagebox_sun = OffsetImage(Sun_img, zoom = 0.07)
     ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
     ax.add_artist(ab_sunimg)    
       
