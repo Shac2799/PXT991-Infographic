@@ -52,7 +52,7 @@ class Object:
         self.x_vel = 0 #initialise x vel 
         self.y_vel = velocity*1000 # initial velocity in m/s
         self.tolerance = 1.5 # for adaptive timestep
-        self.yvel_list = self.xvel_list = np.zeros(num_days+1) # starts at 0 days so need +1
+        self.yvel_list = self.xvel_list = np.zeros(int(num_days)+1) # starts at 0 days so need +1
         self.yvel_list[0], self.xvel_list[0] = self.y_vel, self.x_vel
         self.i = 0 # index for velocity lists
         self.L = []
