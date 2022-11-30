@@ -97,15 +97,16 @@ class Object:
         self.path_x.append(self.x/self.AU) # storing position in array
         self.path_y.append(self.y/self.AU)
             
-    def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
-        height,width,_ = image.shape # dimensions of image
-        image_xlim, image_ylim = [0,height], [0,height] 
+    def rescale_grid(self,image,x_limit,y_limit,crop):    # 480 x 853 for stars.jpg
+#         height,width,_ = image.shape # dimensions of image
+#         image_xlim, image_ylim = [0,height], [0,height] 
 #         image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
         #new_centrex = width/2 # coords for centre of image
-        new_centrex = new_centrey = height/2    
+        image_xlim = image_ylim = [0,crop]
+        new_centrex = new_centrey = crop/2    
 #         x_scale = width/sum(abs(np.array(x_limit))) # number of pixels within the limits
-        x_scale = height/sum(abs(np.array(x_limit)))
-        y_scale = height/sum(abs(np.array(y_limit)))
+        x_scale = crop/sum(abs(np.array(x_limit)))
+        y_scale = crop/sum(abs(np.array(y_limit)))
         img_posx = [(posx*x_scale + new_centrex) for posx in self.path_x] # calculating the re-scaled positions relative to image 
         img_posy = [(posy*y_scale + new_centrey) for posy in self.path_y]
         return img_posx, img_posy, image_xlim, image_ylim
@@ -168,7 +169,8 @@ def main():
     fig,ax = plt.subplots()
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
-    stars_cropped = stars[0:300,0:300,:]
+    crop = 300
+    stars_cropped = stars[0:crop,0:crop,:]
     plt.imshow(stars_cropped)
     #plotting asteroid
     if choice == "Add asteroid":
