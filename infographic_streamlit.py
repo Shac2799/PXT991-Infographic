@@ -97,16 +97,14 @@ class Object:
         self.path_x.append(self.x/self.AU) # storing position in array
         self.path_y.append(self.y/self.AU)
             
-    def rescale_grid(self,image,x_limit,y_limit,crop):    # 480 x 853 for stars.jpg
-#         height,width,_ = image.shape # dimensions of image
-#         image_xlim, image_ylim = [0,height], [0,height] 
-#         image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
-        #new_centrex = width/2 # coords for centre of image
-        image_xlim = image_ylim = [0,crop]
-        new_centrex = new_centrey = crop/2    
+    def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
+        height,width,_ = image.shape # dimensions of image
+        image_xlim = image_ylim = [0,height]
+        #image_xlim, image_ylim = [0,width], [0,height] # setting limits for grid as image dimensions
+        new_centrex = new_centrey = height/2 # coords for centre of image
 #         x_scale = width/sum(abs(np.array(x_limit))) # number of pixels within the limits
-        x_scale = crop/sum(abs(np.array(x_limit)))
-        y_scale = crop/sum(abs(np.array(y_limit)))
+        x_scale = height/sum(abs(np.array(x_limit)))
+        y_scale = height/sum(abs(np.array(y_limit)))
         img_posx = [(posx*x_scale + new_centrex) for posx in self.path_x] # calculating the re-scaled positions relative to image 
         img_posy = [(posy*y_scale + new_centrey) for posy in self.path_y]
         return img_posx, img_posy, image_xlim, image_ylim
@@ -138,9 +136,8 @@ def main():
     Earth_img = mpimg.imread("Earth2.png")
     Asteroid_img = mpimg.imread("meteor2.png")
     height,width,_ = stars.shape # dimensions of background image
-    crop = 300
     #re-scaling central body's position
-    sun_scaledx = sun_scaledy = crop/2 # setting sun's initial position at centre of image
+    sun_scaledx = sun_scaledy = height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-4,4] # -4 to 4 AU limits
           
     if choice == "Add asteroid":      
@@ -157,19 +154,19 @@ def main():
             continue
 
     #re-scaling to image dimensions
-    earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim,crop) 
-    asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim,crop) 
+    earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
+    asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
     
     #defining parameters to change axes limits to AU
     AU = np.arange(x_lim[0],x_lim[1]+1,1)
     #AU = [-4,-3,-2,-1,0,1,2,3,4]   
-    oldx = oldy = np.linspace(0,crop,len(AU))
+    oldx = oldy = np.linspace(0,height,len(AU))
     
     #creating figure for plot
     fig,ax = plt.subplots()
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
-    stars_cropped = stars[0:crop,0:crop,:]
+    stars_cropped = stars[0:height,0:height,:] 
     plt.imshow(stars_cropped)
     #plotting asteroid
     if choice == "Add asteroid":
