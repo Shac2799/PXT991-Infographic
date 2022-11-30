@@ -160,14 +160,15 @@ def main():
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
     
     #defining parameters to change axes limits to AU
-    oldx = np.linspace(0,width,7)
+    oldx = np.linspace(0,height,7)
     oldy = np.linspace(0,height,7)
     AU = [-3,-2,-1,0,1,2,3]          
     
     #creating figure for plot
-    fig,ax = plt.subplots(aspect = 'equal')
-    plt.imshow(stars) # plot background image
-    
+    fig,ax = plt.subplots()
+    #plt.imshow(stars) # plot background image
+    stars_cropped = stars[:,0:height,:]
+    plt.imshow(stars_cropped)
     #plotting asteroid
     if choice == "Add asteroid":
       ax.plot(asteroid_x,asteroid_y, color = 'r') # plot asteroid
