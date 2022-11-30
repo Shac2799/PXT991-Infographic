@@ -140,7 +140,7 @@ def main():
     
     #re-scaling central body's position
     sun_scaledx, sun_scaledy = height/2,height/2 # setting sun's initial position at centre of image
-    x_lim = y_lim = [-4,4] # -3 to 3 AU limits
+    x_lim = y_lim = [-4,4] # -4 to 4 AU limits
           
     if choice == "Add asteroid":      
       objects = [Earth,asteroid]
@@ -160,13 +160,13 @@ def main():
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
     
     #defining parameters to change axes limits to AU
-    oldx = oldy = np.linspace(0,height,7)
-    AU = [-3,-2,-1,0,1,2,3]          
+    AU = np.linspace(x_lim[0],x_lim[1])#[-4,-3,-2,-1,0,1,2,3,4]   
+    oldx = oldy = np.linspace(0,height,len(AU))
     
     #creating figure for plot
     fig,ax = plt.subplots()
     #plt.imshow(stars) # plot background image
-    stars_cropped = stars[:,0:height,:]
+    stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
     plt.imshow(stars_cropped)
     #plotting asteroid
     if choice == "Add asteroid":
