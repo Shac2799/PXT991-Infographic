@@ -139,7 +139,7 @@ def main():
     height,width,_ = stars.shape # dimensions of background image
     
     #re-scaling central body's position
-    sun_scaledx, sun_scaledy = width/2,height/2 # setting sun's initial position at centre of image
+    sun_scaledx, sun_scaledy = height/2,height/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-3,3] # -3 to 3 AU limits
           
     if choice == "Add asteroid":      
