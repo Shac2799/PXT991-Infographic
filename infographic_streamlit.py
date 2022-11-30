@@ -206,7 +206,7 @@ def main():
     plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
-    ax.set_aspect('equal')
+    plt.set_aspect('equal')
     plt.show()
 #    energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
 #    st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
