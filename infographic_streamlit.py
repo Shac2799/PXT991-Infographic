@@ -132,7 +132,7 @@ class Object:
         self.x += c4*self.x_vel*self.time_interval # x4
         
         self.path_x.append(self.x/self.AU) # storing position in array
-        self.xvel_list[self.i] = self.x_vel
+#         self.xvel_list[self.i] = self.x_vel
         
         self.y += c1*self.y_vel*self.time_interval #x1
         self.y_vel += d1*(self.cowells(body,objects)[1]/self.mass)*self.time_interval #v1
@@ -143,7 +143,7 @@ class Object:
         self.y += c4*self.y_vel*self.time_interval # x4
         
         self.path_y.append(self.y/self.AU)
-        self.yvel_list[self.i] = self.y_vel
+#         self.yvel_list[self.i] = self.y_vel
 
         # using euler method        
 #         self.x_vel += (net_fx/self.mass)*self.time_interval
