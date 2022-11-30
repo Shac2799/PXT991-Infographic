@@ -163,7 +163,7 @@ def main():
     oldx = oldy = np.linspace(0,height,len(AU))
     
     #creating figure for plot
-    fig,ax = plt.subplots(figsize=(3,3))
+    fig,ax = plt.subplots(figsize=(0.5,0.5))
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
     stars_cropped = stars[0:height,0:height,:] 
