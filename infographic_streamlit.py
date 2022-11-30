@@ -160,8 +160,7 @@ def main():
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
     
     #defining parameters to change axes limits to AU
-    oldx = np.linspace(0,height,7)
-    oldy = np.linspace(0,height,7)
+    oldx = oldy = np.linspace(0,height,7)
     AU = [-3,-2,-1,0,1,2,3]          
     
     #creating figure for plot
