@@ -50,6 +50,9 @@ class Object:
         self.path_y = [self.y/self.AU]
         self.x_vel = 0 #initialise x vel 
         self.y_vel = velocity*1000 # initial velocity in m/s
+#         self.yvel_list = self.xvel_list = np.zeros(len(num_days)+1) # starts at 0 days so need +1
+#         self.yvel_list[0], self.xvel_list[0] = self.y_vel, self.x_vel
+#         self.i = 0 # index for velocity lists
         self.L = []
         self.KE,self.PE = [], []
         
@@ -74,11 +77,11 @@ class Object:
         self.distance = distance_metres
         self.L.append(self.mass*self.y_vel*distance_metres)
         self.KE.append(0.5*self.mass*(self.y_vel**2)) # 1/2mv^2
-        self.PE.append(-force*distance_metres) # -GMm/r       
-        
+        self.PE.append(-force*distance_metres) # -GMm/r               
+
         return fx,fy
         
-    def update_path(self,body,objects): # F = ma -> a = (v-u)/t -> v = Ft/m + u
+    def cowells(self,body,objects):
         net_fx, net_fy = self.force_of_attract(body)
         
         for obj in objects:
@@ -87,18 +90,52 @@ class Object:
           fx,fy = self.force_of_attract(obj)
           net_fx += fx
           net_fy += fy
-        # using euler method        
-        self.x_vel += (net_fx/self.mass)*self.time_interval
-        self.y_vel += (net_fy/self.mass)*self.time_interval
-        self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
-        self.y += self.y_vel*self.time_interval
+        return net_fx, net_fy
+    
+    def update_path(self,body,objects): # F = ma -> a = (v-u)/t -> v = Ft/m + u
+#         net_fx, net_fy = self.force_of_attract(body)
         
-                
-        #vel_step = 
+#         for obj in objects:
+#           if self == obj:
+#             continue
+#           fx,fy = self.force_of_attract(obj)
+#           net_fx += fx
+#           net_fy += fy
+        netfx,netfy = self.cowells(body,objects)
+  
+        #using fourth order yoshida leapfrog integrator
+        w0, w1 = -(np.cbrt(2)/(2-np.cbrt(2))), (1/(2-np.cbrt(2)))
+        d1 =  d3 = w1
+        d2 = w0
+        c1 = c4 = w1/2
+        c2 = c3 = (w0+w1)/2
         
+        #intemediary steps between each time interval
+        #coefficients sum to 1 to ensure that total dt = time_interval
+        self.x += c1*self.x_vel*time_interval #x1
+        self.xvel += d1*(self.cowells(body)/self.mass)*self.time_interval #v1
+        self.x += c2*self.x_vel*time_interval # x2
+        self.xvel += d2*(self.cowells(body)/self.mass)*self.time_interval #v2
+        self.x += c3*self.x_vel*time_interval # x3      
+        self.xvel += d3*(self.cowells(body)/self.mass)*self.time_interval #v3
+        self.x += c4*self.x_vel*time_interval # x4
         
         self.path_x.append(self.x/self.AU) # storing position in array
         self.path_y.append(self.y/self.AU)
+        # using euler method        
+#         self.x_vel += (net_fx/self.mass)*self.time_interval
+#         self.xvel_list.append(self.x_vel)
+#         self.y_vel += (net_fy/self.mass)*self.time_interval
+#         self.yvel_list.append(self.y_vel)
+        
+# #         self.i += 1
+# #         ratiox, ratioy = (self.xvel_list[i]/self.xvel_list[i-1]), (self.yvel_list[i]/self.yvel_list[i-1])
+               
+#         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
+#         self.y += self.y_vel*self.time_interval
+
+#         self.path_x.append(self.x/self.AU) # storing position in array
+#         self.path_y.append(self.y/self.AU)
             
     def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
         height,width,_ = image.shape # dimensions of image
