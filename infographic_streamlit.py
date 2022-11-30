@@ -180,7 +180,7 @@ def main():
     sun = Body(6.96e8,mass_body,0,0)
     
     #import all images for plot
-    stars = mpimg.imread("stars2.jpg") 
+    stars = mpimg.imread("stars3.jpg") 
     Sun_img = mpimg.imread("Sun.png")
     Earth_img = mpimg.imread("Earth2.png")
     Asteroid_img = mpimg.imread("meteor2.png")
