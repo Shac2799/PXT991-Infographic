@@ -245,7 +245,7 @@ def main():
 #     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
 #     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
 #     ax.add_artist(ab_earthimg)
-    ax.scatter(earth_x,earth_y, color = 'b',s = 0.05) # plot Earth
+    ax.scatter(earth_x,earth_y, color = 'b',s = 0.005) # plot Earth
     #ax.plot(earth_x,earth_y, color = 'b',linewidth = 0.5) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
