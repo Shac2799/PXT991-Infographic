@@ -167,7 +167,8 @@ def main():
     #creating figure for plot
     fig,ax = plt.subplots()
     #plt.imshow(stars) # plot background image
-    stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
+    #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
+    stars_cropped = stars[0:300,0:300,:]
     plt.imshow(stars_cropped)
     #plotting asteroid
     if choice == "Add asteroid":
@@ -195,9 +196,7 @@ def main():
     ax.scatter(sun_scaledx,sun_scaledy, color = 'tab:orange' , s = 1) # plot sun position
     imagebox_sun = OffsetImage(Sun_img, zoom = 0.07)
     ab_sunimg = AnnotationBbox(imagebox_sun, [sun_scaledx, sun_scaledy], xycoords = 'data', frameon = False)
-    ax.add_artist(ab_sunimg)
-
-      
+    ax.add_artist(ab_sunimg)    
       
     # changing limits/labels for axes
     plt.xlim(xlim)
