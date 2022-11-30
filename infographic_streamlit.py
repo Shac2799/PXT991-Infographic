@@ -43,14 +43,13 @@ class Object:
         
         self.x = x*self.AU # converting from AU to m
         self.y = y*self.AU
-        self.velocity = velocity*1000 # initial velocity in m/s
         self.mass = mass # mass in kg
         self.num_days = num_days # defining duration of graphic
         self.distance = 0
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
         self.x_vel = 0 #initialise x vel 
-        self.y_vel = self.velocity # initialise y vel
+        self.y_vel = velocity*1000 # initial velocity in m/s
         self.L = []
         self.KE,self.PE = [], []
         
@@ -88,12 +87,16 @@ class Object:
           fx,fy = self.force_of_attract(obj)
           net_fx += fx
           net_fy += fy
-          
         # using euler method        
         self.x_vel += (net_fx/self.mass)*self.time_interval
         self.y_vel += (net_fy/self.mass)*self.time_interval
         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
         self.y += self.y_vel*self.time_interval
+        
+                
+        #vel_step = 
+        
+        
         self.path_x.append(self.x/self.AU) # storing position in array
         self.path_y.append(self.y/self.AU)
             
