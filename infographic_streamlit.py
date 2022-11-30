@@ -165,7 +165,7 @@ def main():
     AU = [-3,-2,-1,0,1,2,3]          
     
     #creating figure for plot
-    fig,ax = plt.subplots()
+    fig,ax = plt.subplots(aspect = 'equal')
     plt.imshow(stars) # plot background image
     
     #plotting asteroid
