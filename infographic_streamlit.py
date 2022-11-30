@@ -229,13 +229,13 @@ def main():
     stars_cropped = stars[0:height,0:height,:] 
     plt.imshow(stars_cropped,aspect = 'auto')
     #plotting asteroid
-#     if choice == "Add asteroid":
-# #       ax.plot(asteroid_x,asteroid_y, color = 'r',linewidth=0.5) # plot asteroid
-#       ax.plot(asteroid_x[len(asteroid_x)/2:],asteroid_y[len(asteroid_x)/2:], color = 'r',linewidth=0.5) # plot asteroid
-#       ax.plot(asteroid_x[0:len(asteroid_x)/2],asteroid_y[0:len(asteroid_x)/2], color = 'r',linewidth=0.5,alpha = 0.6) # plot asteroid
-#       imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.01)
-#       ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
-#       ax.add_artist(ab_asteroidimg) # adding image of Earth to last coordinate in path
+    if choice == "Add asteroid":
+#       ax.plot(asteroid_x,asteroid_y, color = 'r',linewidth=0.5) # plot asteroid
+      ax.plot(asteroid_x[len(asteroid_x)/2:],asteroid_y[len(asteroid_x)/2:], color = 'r',linewidth=0.5) # plot asteroid
+      ax.plot(asteroid_x[0:len(asteroid_x)/2],asteroid_y[0:len(asteroid_x)/2], color = 'r',linewidth=0.5,alpha = 0.6) # plot asteroid
+      imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.01)
+      ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
+      ax.add_artist(ab_asteroidimg) # adding image of Earth to last coordinate in path
 
     #plotting earth
     # Plots the Earth png in most recent positio 
