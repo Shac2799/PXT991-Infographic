@@ -45,15 +45,15 @@ class Object:
         self.y = y*self.AU
         self.mass = mass # mass in kg
         self.num_days = num_days # defining duration of graphic
-        self.elapsed_time = 0
         self.distance = 0
         self.path_x = [self.x/self.AU] # storing coordinates of object in number of AU
         self.path_y = [self.y/self.AU]
         self.x_vel = 0 #initialise x vel 
         self.y_vel = velocity*1000 # initial velocity in m/s
-        self.yvel_list = self.xvel_list = np.zeros(int(num_days)+1) # starts at 0 days so need +1
-        self.yvel_list[0], self.xvel_list[0] = self.y_vel, self.x_vel
-        self.i = 0 # index for velocity lists
+#                 self.elapsed_time = 0
+#         self.yvel_list = self.xvel_list = np.zeros(int(num_days)+1) # starts at 0 days so need +1
+#         self.yvel_list[0], self.xvel_list[0] = self.y_vel, self.x_vel
+#         self.i = 0 # index for velocity lists
         self.L = []
         self.KE,self.PE = [], []
         
@@ -212,7 +212,6 @@ def main():
             obj.update_path(sun,objects)
           else:
             continue
-    st.write(Earth.elapsed_time)
     #re-scaling to image dimensions
     earth_x,earth_y,xlim,ylim = Earth.rescale_grid(stars, x_lim, y_lim) 
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
