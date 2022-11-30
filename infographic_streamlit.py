@@ -138,7 +138,7 @@ def main():
     Earth_img = mpimg.imread("Earth2.png")
     Asteroid_img = mpimg.imread("meteor2.png")
     height,width,_ = stars.shape # dimensions of background image
-    
+    crop = 300
     #re-scaling central body's position
     sun_scaledx = sun_scaledy = crop/2 # setting sun's initial position at centre of image
     x_lim = y_lim = [-4,4] # -4 to 4 AU limits
@@ -169,7 +169,6 @@ def main():
     fig,ax = plt.subplots()
     #plt.imshow(stars) # plot background image
     #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
-    crop = 300
     stars_cropped = stars[0:crop,0:crop,:]
     plt.imshow(stars_cropped)
     #plotting asteroid
