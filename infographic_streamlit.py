@@ -90,7 +90,7 @@ class Object:
           fx,fy = self.force_of_attract(obj)
           net_fx += fx
           net_fy += fy
-        return net_fx, net_fy
+        return [net_fx, net_fy]
       
     def update_path(self,body,objects): # F = ma -> a = (v-u)/t -> v = Ft/m + u
 #         net_fx, net_fy = self.force_of_attract(body)
