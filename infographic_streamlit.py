@@ -242,9 +242,8 @@ def main():
     plt.yticks(oldy,AU)
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
-#    energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
-#    st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
-    st.line_chart(Earth.L,x = 'Days', y = 'Angular momentum')
+   energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
+   st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
     st.pyplot(fig=None, clear_figure=None)
     st.set_option('deprecation.showPyplotGlobalUse', False)
     
