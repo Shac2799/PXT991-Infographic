@@ -243,10 +243,8 @@ def main():
     #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
     
-    plt.figure(figsize = (10,6))
-    energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
-    st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
-    plt.show()
+#     energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
+#     st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
     
     st.pyplot(fig=None, clear_figure=None)
     st.set_option('deprecation.showPyplotGlobalUse', False)
