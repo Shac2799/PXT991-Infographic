@@ -173,14 +173,14 @@ def main():
     # four inputs to select starting position of Earth/asteroid 
     with st.form(key='columns_in_form'):
         c1, c2, c3, c4 = st.columns(4)
-      with c1:
-          initx_earth = st.number_input("Earth x coord",step = 1.0, value = -1.0, min_value = -4.0,max_value = 4.0)
-      with c2:
-          inity_earth = st.number_input("Earth y coord", step = 1.0, value = 0.0, min_value = -4.0,max_value = 4.0)
-      with c3:
-          initx_ast = st.number_input("Asteroid x coord", step = 1.0, value = -2.0, min_value = -4.0,max_value = 4.0)
-      with c4:
-          inity_ast = st.number_input("Asteroid y coord", step = 1.0, value = 0.0, min_value = -4.0,max_value = 4.0)
+    with c1:
+        initx_earth = st.number_input("Earth x coord",step = 1.0, value = -1.0, min_value = -4.0,max_value = 4.0)
+    with c2:
+        inity_earth = st.number_input("Earth y coord", step = 1.0, value = 0.0, min_value = -4.0,max_value = 4.0)
+    with c3:
+        initx_ast = st.number_input("Asteroid x coord", step = 1.0, value = -2.0, min_value = -4.0,max_value = 4.0)
+    with c4:
+        inity_ast = st.number_input("Asteroid y coord", step = 1.0, value = 0.0, min_value = -4.0,max_value = 4.0)
         submitButton = st.form_submit_button(label = 'Calculate')
 
     mass_ast = st.number_input("Select the mass of the asteroid [Earth masses]", step = 0.5, value = 1.0, min_value = 1e-30)
