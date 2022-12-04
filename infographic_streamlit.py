@@ -194,8 +194,8 @@ def main():
         # if user wants to display asteroid they can select the option
     choice = st.radio("Select an option", ("Add asteroid","Remove asteroid"))
     #initiate instances of each object/body
-    asteroid = Object(initx_ast,0,init_vel1,conv_mass,Days)
-    Earth = Object(-1,0,-30,5.97e24,Days) 
+    asteroid = Object(initx_ast,inity_ast,init_vel1,conv_mass,Days)
+    Earth = Object(initx_earth,inity_earth,-30,5.97e24,Days) 
     sun = Body(6.96e8,mass_body,0,0)
     
     #import all images for plot
