@@ -176,8 +176,8 @@ def main():
     with c1:
         initx_earth = st.number_input("Earth x coord",step = 1.0, value = -1.0, min_value = -3.0,max_value = 3.0)
         if initx_earth == 0:
-          initx_earth.value = 1
-          st.write('The body cannot be positioned here!')
+          initx_earth = 1
+          st.write('The body cannot be positioned on the Sun!')
     with c2:
         inity_earth = st.number_input("Earth y coord", step = 1.0, value = 0.0, min_value = -3.0,max_value = 3.0)
     with c3:
