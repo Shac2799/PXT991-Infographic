@@ -50,8 +50,8 @@ class Object:
         self.path_y = [self.y/self.AU]
         self.x_vel = 0 #initialise x vel 
         self.y_vel = velocity*1000 # initial velocity in m/s
-        self.L = []
-        self.KE,self.PE = [], []
+#         self.L = []
+#         self.KE,self.PE = [], []
         
     def danger_zone(self,body):
           if abs(self.x) <=  body.danger_bound and abs(self.y) <= body.danger_bound:
@@ -72,9 +72,9 @@ class Object:
         fy = force*math.sin(theta)  # force in x and y directions
         fx = force*math.cos(theta)
         self.distance = distance_metres
-        self.L.append(self.mass*self.y_vel*distance_metres)
-        self.KE.append(0.5*self.mass*(self.y_vel**2)) # 1/2mv^2
-        self.PE.append(-force*distance_metres) # -GMm/r               
+#         self.L.append(self.mass*self.y_vel*distance_metres)
+#         self.KE.append(0.5*self.mass*(self.y_vel**2)) # 1/2mv^2
+#         self.PE.append(-force*distance_metres) # -GMm/r               
 
         return fx,fy
         
@@ -240,11 +240,7 @@ def main():
     plt.ylabel("Distance [AU]")
     plt.xticks(oldx,AU) # changing the axes so that they display the distance in AU
     plt.yticks(oldy,AU)
-    #plt.rcParams['axes.facecolor'] = 'black'
     plt.show()
-    
-#     energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
-#     st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
     
     st.pyplot(fig=None, clear_figure=None)
     st.set_option('deprecation.showPyplotGlobalUse', False)
