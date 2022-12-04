@@ -170,15 +170,26 @@ class Object:
     
 def main():
     # choose steps/values for sliders
+    # four inputs to select starting position of Earth/asteroid 
+    with st.form(key='columns_in_form'):
+    c1, c2, c3, c4 = st.columns(4)
+    with c1:
+        initx_earth = st.number_input("Earth x coord",step = 1.0, value = -1.0, min_value = -4.0,max_value = 4.0)
+    with c2:
+        inity_earth = st.number_input("Earth y coord", step = 1.0, value = 0.0, min_value = -4.0,max_value = 4.0)
+    with c3:
+        initx_ast = st.number_input("Asteroid x coord", step = 1.0, value = -2.0, min_value = -4.0,max_value = 4.0)
+    with c4:
+        inity_ast = st.number_input("Asteroid y coord", step = 1.0, value = 0.0, min_value = -4.0,max_value = 4.0)
+
+    submitButton = st.form_submit_button(label = 'Calculate')
         
     mass_ast = st.number_input("Select the mass of the asteroid [Earth masses]", step = 0.5, value = 1.0, min_value = 1e-30)
     conv_mass = mass_ast*5.97e24
     st.write("The asteroid's mass is ",conv_mass, " kg")
     
-    mass_body = st.slider("Mass of body [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0) 
+    mass_body = st.slider("Mass of Sun [Solar mass]", min_value = 1.0, max_value = 10.0, step = 0.5, value = 1.0) 
     init_vel1 = st.slider("Asteroid orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = -15.0)
-    #init_vel2 = st.slider("Earth orbital velocity [km/s]", min_value = -30.0, max_value = 30.0, step = 5.0, value = 30.0)
-
     Days = st.slider("Duration [days]",min_value = 0.0, max_value = 5000.0, step = 5.0,value = 0.0)
     
         # if user wants to display asteroid they can select the option
