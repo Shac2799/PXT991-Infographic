@@ -90,26 +90,7 @@ class Object:
         return net_fx, net_fy
       
     def update_path(self,body,objects): # F = ma -> a = (v-u)/t -> v = Ft/m + u
-#         net_fx, net_fy = self.force_of_attract(body)
-        
-#         for obj in objects:
-#           if self == obj:
-#             continue
-#           fx,fy = self.force_of_attract(obj)
-#           net_fx += fx
-#           net_fy += fy
-        
-#         self.i += 1
-#         # adaptive timestep, halves time interval if difference between consecutive velocites > 1.25v or x1.25 if <1.25v
-#         if self.i > 1:
-#           ratiox, ratioy = (self.xvel_list[self.i]/self.xvel_list[self.i-1]), (self.yvel_list[self.i]/self.yvel_list[self.i-1])
-#           if ratiox or ratioy > 1.5:
-#               self.time_interval = self.time_interval/2
-#           elif ratiox or ratioy <= 1: 
-#               self.time_interval = 1.1*self.time_interval
-                
-#         self.elapsed_time += self.time_interval
-   
+  
         #using fourth order yoshida leapfrog integrator
         w0, w1 = -(np.cbrt(2)/(2-np.cbrt(2))), (1/(2-np.cbrt(2)))
         d1 =  d3 = w1
@@ -140,16 +121,6 @@ class Object:
         
         self.path_y.append(self.y/self.AU)
 
-        # using euler method        
-#         self.x_vel += (net_fx/self.mass)*self.time_interval
-#         self.xvel_list.append(self.x_vel)
-#         self.y_vel += (net_fy/self.mass)*self.time_interval
-#         self.yvel_list.append(self.y_vel)
-#         self.x += self.x_vel*self.time_interval # increment of coords due to changes in velocities
-#         self.y += self.y_vel*self.time_interval
-#         self.path_x.append(self.x/self.AU) # storing position in array
-#         self.path_y.append(self.y/self.AU)
-            
     def rescale_grid(self,image,x_limit,y_limit):    # 480 x 853 for stars.jpg
         height,width,_ = image.shape # dimensions of image
         image_xlim = image_ylim = [0,height]
