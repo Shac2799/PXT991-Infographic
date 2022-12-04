@@ -2,10 +2,10 @@ import numpy as np
 import plotly.graph_objects as go
 
 
-st.set_page_config(page_title="Gravity Simulation", page_icon=None, 
+st.set_page_config(page_title="animation test", page_icon=None, 
                    layout="wide", initial_sidebar_state="auto", menu_items=None) 
 
-st.title("Simulation of gravity between bodies")
+st.title("Animation test!")
 
 # Generate curve data
 t = np.linspace(-1, 1, 100)
