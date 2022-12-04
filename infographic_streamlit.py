@@ -191,6 +191,11 @@ def main():
         initx_ast = -2
         inity_ast = 0
         st.write('The asteroid cannot be positioned on the Sun!')
+    if initx_earth == initx_ast and inity_earth == inity_ast:
+        initx_earth, inity_earth = -1, 0
+        initx_ast, inity_ast = -2, 0
+        st.write('You cannot place both bodies in the same position!')
+        
     mass_ast = st.number_input("Select the mass of the asteroid [Earth masses]", step = 0.5, value = 1.0, min_value = 1e-30)
     conv_mass = mass_ast*5.97e24
     st.write("The asteroid's mass is ",conv_mass, " kg")
