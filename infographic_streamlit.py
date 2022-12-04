@@ -50,10 +50,6 @@ class Object:
         self.path_y = [self.y/self.AU]
         self.x_vel = 0 #initialise x vel 
         self.y_vel = velocity*1000 # initial velocity in m/s
-#                 self.elapsed_time = 0
-#         self.yvel_list = self.xvel_list = np.zeros(int(num_days)+1) # starts at 0 days so need +1
-#         self.yvel_list[0], self.xvel_list[0] = self.y_vel, self.x_vel
-#         self.i = 0 # index for velocity lists
         self.L = []
         self.KE,self.PE = [], []
         
@@ -143,7 +139,6 @@ class Object:
         self.y += c4*self.y_vel*self.time_interval # x4
         
         self.path_y.append(self.y/self.AU)
-#         self.yvel_list[self.i] = self.y_vel
 
         # using euler method        
 #         self.x_vel += (net_fx/self.mass)*self.time_interval
@@ -208,7 +203,7 @@ def main():
     choice = st.radio("Select an option", ("Add asteroid","Remove asteroid"))
     #initiate instances of each object/body
     asteroid = Object(initx_ast,inity_ast,init_vel1,conv_mass,Days)
-    Earth = Object(initx_earth,inity_earth,-30,5.97e24,Days) 
+    Earth = Object(initx_earth,inity_earth,0,5.97e24,Days) 
     sun = Body(6.96e8,mass_body,0,0)
     
     #import all images for plot
