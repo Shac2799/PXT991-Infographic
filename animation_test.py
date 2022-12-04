@@ -46,8 +46,8 @@ fig = go.Figure(
 
         for k in range(N)]
 )
-st.set_option('deprecation.showPyplotGlobalUse', False)
+st.pyplot(fig=None, clear_figure=None)
 fig.show()
 
-# st.pyplot(fig=None, clear_figure=None)
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
