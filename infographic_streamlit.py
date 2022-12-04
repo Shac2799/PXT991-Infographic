@@ -177,16 +177,17 @@ def main():
         initx_earth = st.number_input("Earth x coord",step = 1.0, value = -1.0, min_value = -3.0,max_value = 3.0)
     with c2:
         inity_earth = st.number_input("Earth y coord", step = 1.0, value = 0.0, min_value = -3.0,max_value = 3.0)
+    if initx_earth and inity_earth == 0:
+        initx_earth = -1
+        inity_earth = 0
+        st.write('The Earth cannot be positioned on the Sun!')
     with c3:
         initx_ast = st.number_input("Asteroid x coord", step = 1.0, value = -2.0, min_value = -3.0,max_value = 3.0)
     with c4:
         inity_ast = st.number_input("Asteroid y coord", step = 1.0, value = 0.0, min_value = -3.0,max_value = 3.0)
         submitButton = st.form_submit_button(label = 'Set Coordinates')
         
-    if initx_earth and inity_earth == 0:
-      initx_earth = -1
-      inity_earth = 0
-      st.write('The Earth cannot be positioned on the Sun!')
+
     if initx_ast and inity_ast == 0:
       initx_ast = -2
       inity_ast = 0
