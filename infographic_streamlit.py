@@ -181,8 +181,7 @@ def main():
         initx_ast = st.number_input("Asteroid x coord", step = 1.0, value = -2.0, min_value = -4.0,max_value = 4.0)
     with c4:
         inity_ast = st.number_input("Asteroid y coord", step = 1.0, value = 0.0, min_value = -4.0,max_value = 4.0)
-
-    submitButton = st.form_submit_button(label = 'Calculate')
+      submitButton = st.form_submit_button(label = 'Calculate')
         
     mass_ast = st.number_input("Select the mass of the asteroid [Earth masses]", step = 0.5, value = 1.0, min_value = 1e-30)
     conv_mass = mass_ast*5.97e24
