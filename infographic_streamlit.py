@@ -207,15 +207,12 @@ def main():
     asteroid_x,asteroid_y,_,_ = asteroid.rescale_grid(stars, x_lim, y_lim) 
     #defining parameters to change axes limits to AU
     AU = np.arange(x_lim[0],x_lim[1]+1,1)
-    #AU = [-4,-3,-2,-1,0,1,2,3,4]   
     oldx = oldy = np.linspace(0,height,len(AU))
     
     #creating figure for plot
     fig,ax = plt.subplots()
     ax.set_aspect('equal')
-    #plt.imshow(stars) # plot background image
-    #stars_cropped = stars[:,0:height,:] # cropping image to square so axes are equal
-    stars_cropped = stars[0:height,0:height,:] 
+    stars_cropped = stars[0:height,0:height,:] # cropping image to square so axes are equal
     plt.imshow(stars_cropped,aspect = 'auto')
     #plotting asteroid
     #(len(asteroid_x)-1)/2
@@ -224,15 +221,6 @@ def main():
       imagebox_asteroid = OffsetImage(Asteroid_img, zoom = 0.03)
       ab_asteroidimg = AnnotationBbox(imagebox_asteroid, [asteroid_x[-1],asteroid_y[-1]], xycoords = 'data', frameon = False)
       ax.add_artist(ab_asteroidimg) # adding image of Earth to last coordinate in path
-    #plotting earth
-    # Plots the Earth png in most recent positio 
-#     paths_df = pd.DataFrame({'x-coords':earth_x,'y-coords':earth_y,'day':Days})
-#     px.scatter(paths_df,x = 'x-coords',y = 'y-coords', animation_frame='day',animation_group='day')  
-    
-#     ax.scatter(earth_x,earth_y, color = 'b', s = 0.3) # plot Earth
-#     imagebox_earth = OffsetImage(Earth_img, zoom = 0.02)
-#     ab_earthimg = AnnotationBbox(imagebox_earth, [earth_x[-1],earth_y[-1]], xycoords = 'data', frameon = False)
-#     ax.add_artist(ab_earthimg)
 
     ax.plot(earth_x,earth_y, color = 'b',linewidth = 0.5) # plot Earth
     imagebox_earth = OffsetImage(Earth_img, zoom = 0.03)
