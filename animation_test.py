@@ -1,6 +1,12 @@
 import numpy as np
 import plotly.graph_objects as go
 
+
+st.set_page_config(page_title="Gravity Simulation", page_icon=None, 
+                   layout="wide", initial_sidebar_state="auto", menu_items=None) 
+
+st.title("Simulation of gravity between bodies")
+
 # Generate curve data
 t = np.linspace(-1, 1, 100)
 x = t + t ** 2
@@ -42,3 +48,6 @@ fig = go.Figure(
 )
 
 fig.show()
+
+st.pyplot(fig=None, clear_figure=None)
+st.set_option('deprecation.showPyplotGlobalUse', False)
