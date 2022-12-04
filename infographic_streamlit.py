@@ -172,7 +172,7 @@ def main():
     # choose steps/values for sliders
     # four inputs to select starting position of Earth/asteroid 
     with st.form(key='columns_in_form'):
-    c1, c2, c3, c4 = st.columns(4)
+      c1, c2, c3, c4 = st.columns(4)
     with c1:
         initx_earth = st.number_input("Earth x coord",step = 1.0, value = -1.0, min_value = -4.0,max_value = 4.0)
     with c2:
