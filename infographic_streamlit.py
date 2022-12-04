@@ -244,7 +244,7 @@ def main():
     plt.show()
 #    energy_data = pd.DataFrame({'Ek':Earth.KE,'PE': Earth.PE})
 #    st.line_chart(energy_data,x = 'Days', y = 'Energy [joules]')
-    #st.line_chart(Earth.L,x = 'Days', y = 'Dngular momentum')
+    st.line_chart(Earth.L,x = 'Days', y = 'Angular momentum')
     st.pyplot(fig=None, clear_figure=None)
     st.set_option('deprecation.showPyplotGlobalUse', False)
     
