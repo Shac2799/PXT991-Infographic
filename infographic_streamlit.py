@@ -213,7 +213,7 @@ def main():
     fig,ax = plt.subplots()
     ax.set_aspect('equal')
     stars_cropped = stars[0:height,0:height,:] # cropping image to square so axes are equal
-    plt.imshow(stars_cropped,aspect = 'auto')
+    plt.imshow(stars_cropped,aspect = 'equal')
     #plotting asteroid
     #(len(asteroid_x)-1)/2
     if choice == "Add asteroid":
