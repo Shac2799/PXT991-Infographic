@@ -1,2 +1,2 @@
 # Gravity Infographic
-Infographic 3 for the Data-intensiive micro project. It is a gravity simulation on a body of varying size.
+My infographic for the Data-intensive Astrophysics micro project. It is a three-body orbital simulation, hosted on the streamlit platform.
